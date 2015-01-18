@@ -1,1 +1,1 @@
- 
+﻿18.1.2014, 20 min: slick2d ja lwjgl:n lisääminen netbeans projektiin
