@@ -17,14 +17,16 @@ public class Game extends BasicGame {
     private static final int HEIGHT = 600;
     
     /** A counter... */
-    private int counter;
+    private double counter;
 
     public Game() {
         super("A Slick2d game");
     }
 
     public void render(GameContainer container, Graphics g) throws SlickException {
-        g.drawString("Hello, " + Integer.toString(counter) + "!", counter/22, counter/20);
+        double x = Math.sin(counter)*50+400;
+        double y = Math.cos(counter)*80+300;
+        g.drawString("xd",(int)x,(int)y);
 
     }
 
@@ -35,7 +37,7 @@ public class Game extends BasicGame {
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
-        counter++;
+        counter+= 0.1;
     }
     
     public static void main(String[] args) throws SlickException {

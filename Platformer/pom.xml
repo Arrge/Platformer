@@ -11,6 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.class>platformer.platformer.Game</main.class>
+        <java.library.path>${basedir}/target/natives</java.library.path>
     </properties>
 
     <dependencies>
