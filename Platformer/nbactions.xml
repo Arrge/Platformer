@@ -24,7 +24,7 @@
             <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
         </goals>
         <properties>
-            <exec.args>-Djava.library.path="${basedir}/target/natives" -classpath %classpath ${packageClassName}</exec.args>
+            <exec.args>-Djava.library.path="${basedir}/target/natives" -classpath %classpath platformer.GUI.Game</exec.args>
             <exec.executable>java</exec.executable>
         </properties>
     </action>

@@ -9,15 +9,16 @@ package platformer.Entities;
  *
  * @author Joonas
  */
-public class Enemy extends Entity { 
-    int health, damage;
+public class Enemy extends Entity {
+
+    private int health, damage;
 
     public Enemy(int health, int damage, int x, int y, int height, int width) {
         super(x, y, height, width);
         this.health = health;
         this.damage = damage;
     }
-    
+
     public boolean damage(int amount) {
         if (health - amount <= 0) {
             health = 0;

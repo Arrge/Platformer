@@ -5,55 +5,48 @@
  */
 package platformer.Entities;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 
-/**
- *
- * @author Joonas
- */
 public class Entity {
-    private int x,y,height,width;
+
     private Rectangle hitbox;
+    Color c;
 
     public Entity(int x, int y, int height, int width) {
-        this.x = x;
-        this.y = y;
-        this.height = height;
-        this.width = width;
         this.hitbox = new Rectangle(x, y, width, height);
-    }
-    
-    public void move(int dx, int dy) {
-        x += dx;
-        y += dy;
-        hitbox.setLocation(x, y);
+        c = Color.white;
     }
 
     public Rectangle getHitbox() {
         return hitbox;
     }
 
-    public int getX() {
-        return x;
+    public void setLocation(float x, float y) {
+        getHitbox().setLocation(x, y);
     }
 
-    public int getY() {
-        return y;
+    public void setC(Color c) {
+        this.c = c;
     }
 
-    public int getHeight() {
-        return height;
+    public Color getC() {
+        return c;
     }
 
-    public int getWidth() {
-        return width;
+    public float getX() {
+        return hitbox.getX();
     }
-    
-    
-    
-    public void setCoords(int x, int y) {
-        this.x = x;
-        this.y = y;
-        hitbox.setLocation(x, y);
+
+    public float getY() {
+        return hitbox.getY();
+    }
+
+    public float getHeight() {
+        return hitbox.getHeight();
+    }
+
+    public float getWidth() {
+        return hitbox.getWidth();
     }
 }
