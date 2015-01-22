@@ -44,7 +44,7 @@ public class Player extends Entity {
         x_vel = 2f;
     }
 
-    public void applyGravity() {
+    public void applyGravityAndVelocity() {
         if (true) {
             y_vel += 0.2f;
         }

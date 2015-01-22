@@ -7,7 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import platformer.Entities.Entity;
-import platformer.Logic.World;
+import platformer.Logic.Logic;
 
 /**
  * A game using Slick2d
@@ -22,7 +22,7 @@ public class Game extends BasicGame {
      * Screen height
      */
     private static final int HEIGHT = 600;
-    private World w;
+    private Logic w;
 
     /**
      * A counter...
@@ -52,7 +52,7 @@ public class Game extends BasicGame {
 
     @Override
     public void init(GameContainer container) throws SlickException {
-        w = new World(container.getInput());
+        w = new Logic(container.getInput());
         //debug platforms
         w.addPlatform(new Entity(0, 400, 20, 350));
         w.addPlatform(new Entity(550, 400, 20, 60));

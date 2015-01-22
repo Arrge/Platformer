@@ -98,6 +98,16 @@
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
                 <version>0.30</version>
+                <configuration>
+                    <targetClasses>
+                        <param>platformer.Entities.*</param>
+                        <param>platformer.Logic.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>platformer.Entities.*</param>
+                        <param>platformer.Logic.*</param>
+                    </targetTests>
+                </configuration>
             </plugin>
         </plugins>
     </build>
