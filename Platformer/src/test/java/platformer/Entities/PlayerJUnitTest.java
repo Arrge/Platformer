@@ -17,61 +17,66 @@ import static org.junit.Assert.*;
  * @author Joonas
  */
 public class PlayerJUnitTest {
+
     Player p;
-    
+
     public PlayerJUnitTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-        p = new Player(0, 0, 20, 10);
+        p = new Player(0, 0,1,1, 20, 10);
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
     public void gravityIncreasesFallSpeed() {
-        p.applyGravityAndVelocity();
-        
+        p.applyGravityAndVelocity(17);
+
         assertTrue(p.getY_vel() > 0);
     }
+
     @Test
     public void xVelocitySlowsDownWhenOnPlatform() {
         p.setX_vel(10f);
         p.setOnPlatform(true);
-        p.applyGravityAndVelocity();
+        p.applyGravityAndVelocity(17);
         assertTrue(p.getX_vel() < 10f);
     }
+
     @Test
     public void JumpWorksWhenOnPlatform() {
         p.setOnPlatform(true);
         p.jump();
-        p.applyGravityAndVelocity();
-        p.move();
-        assertTrue(p.getY_old() > p.getY());
+        p.applyGravityAndVelocity(17);
+        p.move(17);
+        assertTrue(p.getY_old() > p.getY() && !p.isOnPlatform());
     }
+
     @Test
     public void PlayerGoesLeft() {
         p.goLeft();
-        p.applyGravityAndVelocity();
-        p.move();
+        p.applyGravityAndVelocity(17);
+        p.move(17);
         assertTrue(p.getX_old() > p.getX());
     }
+
     @Test
     public void playerGoesRight() {
         p.goRight();
-        p.applyGravityAndVelocity();
-        p.move();
+        p.applyGravityAndVelocity(17);
+        p.move(17);
         assertTrue(p.getX_old() < p.getX());
     }
     // TODO add test methods here.

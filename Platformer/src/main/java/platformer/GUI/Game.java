@@ -5,9 +5,11 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import platformer.Entities.Entity;
 import platformer.Logic.Logic;
+import platformer.Sprites.SpriteHandler;
 
 /**
  * A game using Slick2d
@@ -23,6 +25,7 @@ public class Game extends BasicGame {
      */
     private static final int HEIGHT = 600;
     private Logic w;
+    private SpriteHandler sh;
 
     /**
      * A counter...
@@ -35,35 +38,29 @@ public class Game extends BasicGame {
 
         g.setColor(Color.white);
         //draw platforms
+        Image sprite;
         for (Entity p : w.getPlatforms()) {
             g.setColor(p.getC());
-            g.fill(p.getHitbox());
+            sprite = sh.getSprite(p.getSpriteX(), p.getSpriteY());
+            g.drawImage(sprite, p.getX() - w.getPlayer().getX_offset(), p.getY() - w.getPlayer().getY_offset());
+            //g.fillRect(p.getX() - w.getPlayer().getX_offset(), p.getY() - w.getPlayer().getY_offset(), p.getWidth(), p.getHeight());
             g.setColor(Color.red);
-            //platform coords for debug
-            g.drawString(" " + p.getX() + ", " + p.getY(), p.getX(), p.getY());
         }
         //draw player
         g.setColor(Color.red);
-        g.fill(w.getPlayer().getHitbox());
+        sprite = sh.getSprite(w.getPlayer().getSpriteX(), w.getPlayer().getSpriteY());
+        g.drawImage(sprite, w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset());
+        //g.fillRect(w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset(), w.getPlayer().getWidth(), w.getPlayer().getHeight());
         //player coords for debug
-        g.drawString(" " + w.getPlayer().getX() + ", " + w.getPlayer().getY(), w.getPlayer().getX(), w.getPlayer().getY());
+        g.drawString(" " + w.getPlayer().getX() + ", " + w.getPlayer().getY(), w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset());
 
     }
 
     @Override
     public void init(GameContainer container) throws SlickException {
         w = new Logic(container.getInput());
-        //debug platforms
-        w.addPlatform(new Entity(0, 400, 20, 350));
-        w.addPlatform(new Entity(550, 400, 20, 60));
-        w.addPlatform(new Entity(350, 300, 200, 200));
-        w.addPlatform(new Entity(400, 200, 20, 200));
-        //block off the sides
-        w.addPlatform(new Entity(0, 0, 20, 800));
-        w.addPlatform(new Entity(0, 0, 800, 20));
-        w.addPlatform(new Entity(780, 0, 800, 20));
-        w.addPlatform(new Entity(0, 580, 20, 800));
-        ////////////////////////////////////////////
+        sh = new SpriteHandler();
+
     }
 
     @Override

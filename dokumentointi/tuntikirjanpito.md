@@ -1,4 +1,4 @@
-#Tuntikirjanpito
+﻿#Tuntikirjanpito
 
 | pvm    	 | Kuvaus        | Aika  |
 |:-----------|:--------------|:------|
@@ -8,3 +8,4 @@
 | 21.01.2015 | tutkimusta, karmean collision detectionin koodausta | 2h |
 | 21.01.2015 | lisää tutkimusta, paremman collision detectionin koodaus ja junit testien aloitus | 2.5h |
 | 22.01.2015 | yli 10 junit testiä, deadlinen vaatimusten täyttämistä | 1.5h |
+| 26.01.2015 | tileset tsydeemin implementointia | 2h |

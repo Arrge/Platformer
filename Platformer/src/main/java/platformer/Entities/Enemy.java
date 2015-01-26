@@ -13,8 +13,8 @@ public class Enemy extends Entity {
 
     private int health, damage;
 
-    public Enemy(int health, int damage, int x, int y, int height, int width) {
-        super(x, y, height, width);
+    public Enemy(int health, int damage, int x, int y, int spriteX, int spriteY, int width, int height) {
+        super(x, y, spriteX, spriteY, width, height);
         this.health = health;
         this.damage = damage;
     }

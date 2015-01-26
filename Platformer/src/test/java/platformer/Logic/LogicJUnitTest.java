@@ -42,7 +42,7 @@ public class LogicJUnitTest {
         //no need to listen to input on automated tests so set Input to null
         w = new Logic(null);
         w.getPlayer().setLocation(400, 250);
-        w.addPlatform(new Entity(200, 300, 20, 400));
+        w.addPlatform(new Entity(200, 300,1,1, 20, 400));
         platform = w.getPlatforms().get(0);
         p = w.getPlayer();
     }
@@ -51,65 +51,65 @@ public class LogicJUnitTest {
     public void tearDown() {
     }
 
-    
     @Test
     public void PlatformAddedCorrectly() {
-        w.addPlatform(new Entity(200, 300, 20, 400));
+        w.addPlatform(new Entity(200,300,1,1, 20, 400));
         assertTrue(w.getPlatforms().size() == 2);
     }
+
     //collision tests
     @Test
     public void FallsDownToPlatformAndStaysBetweenPlatformsWidth() {
         //run for 200 frames
         for (int i = 0; i < 200; i++) {
-            w.applyGravity();
-            p.move();
+            w.applyGravity(17);
+            p.move(17);
             w.checkForCollisions();
         }
         assertTrue(p.isOnPlatform() && p.xIsInsidePlatform(platform));
     }
-    
-    
+
     @Test
     public void fallsDownToPlatformAndStaysOnTopOfIt() {
         //run for 200 frames
         for (int i = 0; i < 200; i++) {
-            w.applyGravity();
-            p.move();
+            w.applyGravity(17);
+            p.move(17);
             w.checkForCollisions();
         }
         assertTrue(p.isOnPlatform() && p.getY() == platform.getY() - p.getHeight());
     }
-    
+
     @Test
     public void pushesAwayFromPlatformWhenIntersectingFromUnder() {
-        p.setLocation(300,330);
-        p.setY_vel(-20);
-        p.setX_vel(2);
-        w.applyGravity();
-        p.move();
+        p.setLocation(300, 330);
+        p.setY_vel(-20 * 60);
+        p.setX_vel(2 * 60);
+        w.applyGravity(17);
+        p.move(17);
         w.checkForCollisions();
         //not going upwards & under platform
-        assertTrue(p.getY_vel() >= 0 && p.getY() >= platform.getY()+platform.getHeight() );
+        assertTrue(p.getY_vel() >= 0 && p.getY() >= platform.getY() + platform.getHeight());
     }
-    
+
     @Test
     public void PushesAwayFromPlatformWhenIntersectingFromLeft() {
         p.setLocation(190, 305);
         p.setY_vel(-1);
         p.setX_vel(20);
-        w.applyGravity();
-        p.move();
+        w.applyGravity(17);
+        p.move(17);
         w.checkForCollisions();
         assertTrue(!p.xIsInsidePlatform(platform));
     }
+
     @Test
     public void PushesAwayFromPlatformWhenIntersectingFromRight() {
         p.setLocation(610, 305);
         p.setY_vel(-1);
         p.setX_vel(-20);
-        w.applyGravity();
-        p.move();
+        w.applyGravity(17);
+        p.move(17);
         w.checkForCollisions();
         assertTrue(!p.xIsInsidePlatform(platform));
     }

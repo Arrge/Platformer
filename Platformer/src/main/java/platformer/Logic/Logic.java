@@ -23,29 +23,19 @@ public class Logic {
 
     //get input class from 
     public Logic(Input input) {
+
+        this.player = new Player(80, 80, 1, 0, 32, 32);
         this.input = input;
-        this.player = new Player(200, 30, 20, 10);
         this.platforms = new ArrayList<Entity>();
         this.enemies = new ArrayList<Enemy>();
     }
 
     public void update(int delta) {
         checkInput();
-        applyGravity();
-        player.move();
+        applyGravity(delta);
+
+        player.move(delta);
         checkForCollisions();
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public ArrayList<Entity> getPlatforms() {
-        return platforms;
-    }
-
-    public void addPlatform(Entity p) {
-        platforms.add(p);
     }
 
     public void checkInput() {
@@ -64,37 +54,49 @@ public class Logic {
 
     }
 
-    public void applyGravity() {
-        player.applyGravityAndVelocity();
+    public Player getPlayer() {
+        return player;
+    }
+
+    public ArrayList<Entity> getPlatforms() {
+        return platforms;
+    }
+
+    public void addPlatform(Entity p) {
+        platforms.add(p);
+    }
+
+    public void applyGravity(int delta) {
+        player.applyGravityAndVelocity(delta);
     }
 
     public void checkForCollisions() {
-        
-        for (Entity p : platforms) {
-            if (player.getHitbox().intersects(p.getHitbox())) {
+
+        for (Entity platform : platforms) {
+            if (player.getHitbox().intersects(platform.getHitbox())) {
                 //if intersecting, set platform color to green
-                p.setC(Color.green);
+                platform.setC(Color.green);
                 //if intersecting from left and player Y coordinate is between a platform
-                if (player.getX_old() < p.getX() && player.yIsInsidePlatform(p)) {
-                    player.setLocation(p.getX() - player.getWidth() - 2, player.getY());
+                if (player.getX_old() < platform.getX() && player.yIsInsidePlatform(platform)) {
+                    player.setLocation(platform.getX() - player.getWidth() - 2.5f, player.getY());
                     player.setX_vel(0);
                 } //if intersecting from right and player Y coordinate is between a platform
-                else if (player.getX_old() > p.getX() + p.getWidth() && player.yIsInsidePlatform(p)) {
-                    player.setLocation(p.getX() + p.getWidth() + 2, player.getY());
+                else if (player.getX_old() > platform.getX() + platform.getWidth() && player.yIsInsidePlatform(platform)) {
+                    player.setLocation(platform.getX() + platform.getWidth() + 2.5f, player.getY());
                     player.setX_vel(0);
                 } //if falling from above && player x coordinate is inside platform
-                else if (player.getY_old() < p.getY() && player.xIsInsidePlatform(p)) {
-                    player.setLocation(player.getX(), p.getY() - player.getHeight());
+                else if (player.getY_old() < platform.getY() && player.xIsInsidePlatform(platform) && player.isFalling()) {
+                    player.setLocation(player.getX(), platform.getY() - player.getHeight());
                     player.setOnPlatform(true);
                     player.setY_vel(0);
                 } //if coming towards platform from under && player x coordinate is inside platform
-                else if (player.getY_old() > p.getY() + p.getHeight() && player.xIsInsidePlatform(p)) {
-                    player.setLocation(player.getX(), p.getY() + p.getHeight());
+                else if (player.getY_old() > platform.getY() + platform.getHeight() && player.xIsInsidePlatform(platform) && player.isFlying()) {
+                    player.setLocation(player.getX(), platform.getY() + platform.getHeight());
                     player.setY_vel(0);
                 }
             } else {
                 //if not intersecting set platform color to white
-                p.setC(Color.white);
+                platform.setC(Color.white);
             }
         }
     }

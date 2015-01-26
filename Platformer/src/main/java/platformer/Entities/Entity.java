@@ -11,10 +11,13 @@ import org.newdawn.slick.geom.Rectangle;
 public class Entity {
 
     private Rectangle hitbox;
+    int spriteX, spriteY;
     Color c;
 
-    public Entity(int x, int y, int height, int width) {
+    public Entity(int x, int y, int spriteX, int SpriteY, int width, int height) {
         this.hitbox = new Rectangle(x, y, width, height);
+        this.spriteX = spriteX;
+        this.spriteY = SpriteY;
         c = Color.white;
     }
 
@@ -26,6 +29,14 @@ public class Entity {
         getHitbox().setLocation(x, y);
     }
 
+    public float getX() {
+        return hitbox.getX();
+    }
+
+    public float getY() {
+        return hitbox.getY();
+    }
+
     public void setC(Color c) {
         this.c = c;
     }
@@ -34,12 +45,12 @@ public class Entity {
         return c;
     }
 
-    public float getX() {
-        return hitbox.getX();
+    public int getSpriteX() {
+        return spriteX;
     }
 
-    public float getY() {
-        return hitbox.getY();
+    public int getSpriteY() {
+        return spriteY;
     }
 
     public float getHeight() {

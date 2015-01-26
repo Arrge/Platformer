@@ -12,12 +12,12 @@ package platformer.Entities;
 public class Player extends Entity {
 
     private float x_vel, y_vel;
-    //save old coordinates after movement to help with collision detection stuff
+    //save old coordinates after movement to help collision detection
     private float x_old, y_old;
     private boolean onPlatform;
 
-    public Player(int x, int y, int height, int width) {
-        super(x, y, height, width);
+    public Player(int x, int y, int spriteX, int spriteY, int width, int height) {
+        super(x, y, spriteX, spriteY, width, height);
         y_vel = 0;
         x_vel = 0;
         onPlatform = false;
@@ -25,41 +25,56 @@ public class Player extends Entity {
 
     public void jump() {
         if (isOnPlatform()) {
-            y_vel = -10;
+            y_vel = -400;
             setOnPlatform(false);
         }
     }
 
-    public void move() {
+    public void move(int delta) {
         x_old = getX();
         y_old = getY();
-        getHitbox().setLocation(getX() + x_vel, getY() + y_vel);
+        getHitbox().setLocation(getX() + x_vel * ((float) delta / 1000f), getY() + y_vel * ((float) delta / 1000f));
     }
 
     public void goLeft() {
-        x_vel = -2f;
+        if (true) {
+            x_vel = -250f;
+        }
     }
 
     public void goRight() {
-        x_vel = 2f;
+        if (true) {
+            x_vel = 250f;
+        }
     }
 
-    public void applyGravityAndVelocity() {
-        if (true) {
-            y_vel += 0.2f;
-        }
-        if (isOnPlatform()) {
-            if (x_vel > 0f) {
-                x_vel -= 0.25f;
+    public void applyGravityAndVelocity(int delta) {
+        y_vel += 800f * ((float) delta / 1000f);
+        if (x_vel > 0) {
+            x_vel -= 800 * (delta / 1000f);
+            if (x_vel < 0) {
+                x_vel = 0;
             }
-            if (x_vel < 0f) {
-                x_vel += 0.25f;
+        } else if (x_vel < 0) {
+            x_vel += 800 * (delta / 1000f);
+            if (x_vel > 0) {
+                x_vel = 0;
             }
+        } else {
+            x_vel = 0;
         }
+    }
+
+    public boolean isFalling() {
+        return y_vel > 0;
+    }
+
+    public boolean isFlying() {
+        return y_vel < 0;
     }
 
     public boolean xIsInsidePlatform(Entity p) {
-        return getX() > p.getX() && getX() < p.getX() + p.getWidth();
+        return getX() + getWidth() >= p.getX() && getX() <= p.getX() + p.getWidth();
     }
 
     public boolean yIsInsidePlatform(Entity p) {
@@ -68,6 +83,14 @@ public class Player extends Entity {
 ///////////////////////////////////////
 /////// get & set methods /////////////
 ///////////////////////////////////////
+
+    public float getX_offset() {
+        return getX() - 400;
+    }
+
+    public float getY_offset() {
+        return getY() - 300;
+    }
 
     public float getX_old() {
         return x_old;
