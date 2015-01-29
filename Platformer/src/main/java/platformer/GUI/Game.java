@@ -1,5 +1,6 @@
 package platformer.GUI;
 
+import org.lwjgl.opencl.APPLESetMemObjectDestructor;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -35,24 +36,14 @@ public class Game extends BasicGame {
     }
 
     public void render(GameContainer container, Graphics g) throws SlickException {
+        sh.getMaps().get(0).render(0 - (int) w.getPlayer().getX_offset(), 0 - (int) w.getPlayer().getY_offset());
 
-        g.setColor(Color.white);
-        //draw platforms
-        Image sprite;
-        for (Entity p : w.getPlatforms()) {
-            g.setColor(p.getC());
-            sprite = sh.getSprite(p.getSpriteX(), p.getSpriteY());
-            g.drawImage(sprite, p.getX() - w.getPlayer().getX_offset(), p.getY() - w.getPlayer().getY_offset());
-            //g.fillRect(p.getX() - w.getPlayer().getX_offset(), p.getY() - w.getPlayer().getY_offset(), p.getWidth(), p.getHeight());
-            g.setColor(Color.red);
-        }
-        //draw player
-        g.setColor(Color.red);
-        sprite = sh.getSprite(w.getPlayer().getSpriteX(), w.getPlayer().getSpriteY());
-        g.drawImage(sprite, w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset());
-        //g.fillRect(w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset(), w.getPlayer().getWidth(), w.getPlayer().getHeight());
+        g.setColor(new Color(w.getPlayer().getOpacity(), 128, 128, 255));
+        //g.drawImage(sprite, w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset());
+        g.fillRect(w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset(), w.getPlayer().getWidth(), w.getPlayer().getHeight());
         //player coords for debug
-        g.drawString(" " + w.getPlayer().getX() + ", " + w.getPlayer().getY(), w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset());
+        g.setColor(Color.red);
+        g.drawString("health: "+ w.getPlayer().getHealth(), 40, 40);
 
     }
 
@@ -60,6 +51,9 @@ public class Game extends BasicGame {
     public void init(GameContainer container) throws SlickException {
         w = new Logic(container.getInput());
         sh = new SpriteHandler();
+        w.addPlatformArrayList(sh.getMapPlatforms(0));
+        w.addSpikeArrayList(sh.getSpikes(0));
+        
 
     }
 

@@ -33,13 +33,27 @@ public class PlayerJUnitTest {
 
     @Before
     public void setUp() {
-        p = new Player(0, 0,1,1, 20, 10);
+        p = new Player(0, 0, 1, 20, 10);
     }
 
     @After
     public void tearDown() {
     }
 
+    
+    @Test
+    public void goesImmuneWhenAttacked() {
+        int health = p.getHealth();
+        p.takeDamage(1);
+        p.takeDamage(1);
+        assertTrue(p.getHealth() == health-1);
+    }
+    @Test
+    public void healthDoesntGoBelowZero() {
+        p.takeDamage(p.getHealth()+1);
+        assertTrue(p.getHealth() == 0);
+    }
+    
     @Test
     public void gravityIncreasesFallSpeed() {
         p.applyGravityAndVelocity(17);

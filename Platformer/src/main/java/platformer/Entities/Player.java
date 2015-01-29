@@ -5,84 +5,109 @@
  */
 package platformer.Entities;
 
+import com.sun.javafx.geom.Vec2f;
+import java.util.Random;
+
 /**
  *
  * @author Joonas
  */
 public class Player extends Entity {
 
-    private float x_vel, y_vel;
     //save old coordinates after movement to help collision detection
-    private float x_old, y_old;
     private boolean onPlatform;
+    private int health;
+    private float immunityTimer;
+    //immunity time in seconds
+    private int immunityTime;
 
-    public Player(int x, int y, int spriteX, int spriteY, int width, int height) {
-        super(x, y, spriteX, spriteY, width, height);
-        y_vel = 0;
-        x_vel = 0;
+    public Player(int x, int y, int spriteSheetId, int width, int height) {
+        super(x, y, spriteSheetId, width, height);
         onPlatform = false;
+        health = 100;
+        
+        immunityTime = 3;
+        immunityTimer = immunityTime+1;
     }
 
     public void jump() {
-        if (isOnPlatform()) {
-            y_vel = -400;
+        if (isOnPlatform() && Math.abs(getY_vel()) < 10f) {
+            setY_vel(-200f);
             setOnPlatform(false);
         }
     }
 
-    public void move(int delta) {
-        x_old = getX();
-        y_old = getY();
-        getHitbox().setLocation(getX() + x_vel * ((float) delta / 1000f), getY() + y_vel * ((float) delta / 1000f));
-    }
-
     public void goLeft() {
         if (true) {
-            x_vel = -250f;
+            setX_vel(-150f);
         }
     }
 
     public void goRight() {
         if (true) {
-            x_vel = 250f;
+            setX_vel(150f);
         }
+    }
+
+    public void takeDamage(int damage) {
+        
+        if (immunityTimer > immunityTime) {
+            health -= damage;
+            immunityTimer = 0;
+        }
+        if (health < 0) {
+            health = 0;
+        }
+        
+    }
+
+    public boolean isAlive() {
+        return health > 0;
     }
 
     public void applyGravityAndVelocity(int delta) {
-        y_vel += 800f * ((float) delta / 1000f);
-        if (x_vel > 0) {
-            x_vel -= 800 * (delta / 1000f);
-            if (x_vel < 0) {
-                x_vel = 0;
+        
+        immunityTimer += 1 * ((float) delta / 1000f);
+        
+        //apply gravity
+        setY_vel(getY_vel() + 275f * ((float) delta / 1000f));
+        //terminal velocity
+        Float terminalVelocity = 350f;
+        if (getY_vel() > terminalVelocity) {
+            setY_vel(terminalVelocity);
+        }
+        //add small slide to movement
+        if (getX_vel() > 0) {
+            setX_vel(getX_vel() - 800 * (delta / 1000f));
+            if (getX_vel() < 0) {
+                setX_vel(0);
             }
-        } else if (x_vel < 0) {
-            x_vel += 800 * (delta / 1000f);
-            if (x_vel > 0) {
-                x_vel = 0;
+        } else if (getX_vel() < 0) {
+            setX_vel(getX_vel() + 800 * (delta / 1000f));
+            if (getX_vel() > 0) {
+                setX_vel(0);
             }
         } else {
-            x_vel = 0;
+            setX_vel(0);
         }
     }
 
-    public boolean isFalling() {
-        return y_vel > 0;
-    }
-
-    public boolean isFlying() {
-        return y_vel < 0;
-    }
-
-    public boolean xIsInsidePlatform(Entity p) {
-        return getX() + getWidth() >= p.getX() && getX() <= p.getX() + p.getWidth();
-    }
-
-    public boolean yIsInsidePlatform(Entity p) {
-        return getY() > p.getY() && getY() < p.getY() + p.getHeight();
-    }
 ///////////////////////////////////////
 /////// get & set methods /////////////
 ///////////////////////////////////////
+    
+    
+    public int getOpacity() {
+        if (immunityTimer < immunityTime) {
+            return new Random().nextInt(255);
+        }else {
+            return 0;
+        }
+    }
+
+    public int getHealth() {
+        return health;
+    }
 
     public float getX_offset() {
         return getX() - 400;
@@ -92,36 +117,12 @@ public class Player extends Entity {
         return getY() - 300;
     }
 
-    public float getX_old() {
-        return x_old;
-    }
-
-    public float getY_old() {
-        return y_old;
-    }
-
     public boolean isOnPlatform() {
         return onPlatform;
     }
 
     public void setOnPlatform(boolean onPlatform) {
         this.onPlatform = onPlatform;
-    }
-
-    public void setY_vel(float y_vel) {
-        this.y_vel = y_vel;
-    }
-
-    public float getY_vel() {
-        return y_vel;
-    }
-
-    public void setX_vel(float x_vel) {
-        this.x_vel = x_vel;
-    }
-
-    public float getX_vel() {
-        return x_vel;
     }
 
 }

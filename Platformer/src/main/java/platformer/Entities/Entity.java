@@ -5,28 +5,61 @@
  */
 package platformer.Entities;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 
-public class Entity {
+public class Entity implements Collidable {
 
+    private float x_vel, y_vel;
     private Rectangle hitbox;
-    int spriteX, spriteY;
-    Color c;
+    private float x_old, y_old;
+    private int spriteSheetId;
+    private int collisionDamage;
 
-    public Entity(int x, int y, int spriteX, int SpriteY, int width, int height) {
+    public Entity(float x, float y, int spriteSheetId, float width, float height) {
         this.hitbox = new Rectangle(x, y, width, height);
-        this.spriteX = spriteX;
-        this.spriteY = SpriteY;
-        c = Color.white;
+        this.spriteSheetId = spriteSheetId;
+        x_old = x;
+        y_old = y;
+        y_vel = 0;
+        x_vel = 0;
+        collisionDamage = 0;
+    }
+
+    public Entity(float x, float y, int spriteSheetId, float width, float height, int collisionDamage) {
+        this.hitbox = new Rectangle(x, y, width, height);
+        this.spriteSheetId = spriteSheetId;
+        x_old = x;
+        y_old = y;
+        y_vel = 0;
+        x_vel = 0;
+        this.collisionDamage = collisionDamage;
+    }
+
+    public void setLocation(float x, float y) {
+        getHitbox().setLocation(x, y);
+    }
+
+    public void move(int delta) {
+        x_old = getX();
+        y_old = getY();
+        getHitbox().setLocation(getX() + x_vel * ((float) delta / 1000f), getY() + y_vel * ((float) delta / 1000f));
+    }
+
+    /////////////////////////////////////////////////////////////////
+    public int getSpriteSheetId() {
+        return spriteSheetId;
     }
 
     public Rectangle getHitbox() {
         return hitbox;
     }
 
-    public void setLocation(float x, float y) {
-        getHitbox().setLocation(x, y);
+    public float getHeight() {
+        return Math.round(hitbox.getHeight());
+    }
+
+    public float getWidth() {
+        return Math.round(hitbox.getWidth());
     }
 
     public float getX() {
@@ -37,27 +70,48 @@ public class Entity {
         return hitbox.getY();
     }
 
-    public void setC(Color c) {
-        this.c = c;
+    public float getMaxX() {
+        return hitbox.getMaxX();
     }
 
-    public Color getC() {
-        return c;
+    public float getMaxY() {
+        return hitbox.getMaxY();
     }
 
-    public int getSpriteX() {
-        return spriteX;
+    public float getX_old() {
+        return x_old;
     }
 
-    public int getSpriteY() {
-        return spriteY;
+    public float getY_old() {
+        return y_old;
     }
 
-    public float getHeight() {
-        return hitbox.getHeight();
+    public float getMaxX_old() {
+        return x_old + getWidth();
     }
 
-    public float getWidth() {
-        return hitbox.getWidth();
+    public float getMaxY_old() {
+        return y_old + getHeight();
+    }
+
+    public void setY_vel(float y_vel) {
+        this.y_vel = y_vel;
+    }
+
+    public float getY_vel() {
+        return y_vel;
+    }
+
+    public void setX_vel(float x_vel) {
+        this.x_vel = x_vel;
+    }
+
+    public float getX_vel() {
+        return x_vel;
+    }
+
+    @Override
+    public int getCollisionDamage() {
+        return collisionDamage;
     }
 }

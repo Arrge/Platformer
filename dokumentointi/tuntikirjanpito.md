@@ -8,4 +8,9 @@
 | 21.01.2015 | tutkimusta, karmean collision detectionin koodausta | 2h |
 | 21.01.2015 | lisää tutkimusta, paremman collision detectionin koodaus ja junit testien aloitus | 2.5h |
 | 22.01.2015 | yli 10 junit testiä, deadlinen vaatimusten täyttämistä | 1.5h |
-| 26.01.2015 | tileset tsydeemin implementointia | 2h |
+| 26.01.2015 | tiledmap tsydeemin implementointia | 2h |
+| 27.01.2015 | kartan renderöinti kuntoon ja collision detectionin fixausta | 2h |
+| 28.01.2015 | collision detection kuntoon & väliaikaisten grafiikoiden piirtämistä  | 2h |
+| 28.01.2015 | väliaikaisten grafiikoiden piirtämistä & piikkien implementointia | 2.5h |
+| 29.01.2015 | piikki, healthi ja damage, sekä jännien maven/junit bugien korjausta | 2h |
+| 29.01.2015 | koodin siistimistä, pari junit testiä, luokkakaavion päivitys, deadlineen valmstautumista | 2h |

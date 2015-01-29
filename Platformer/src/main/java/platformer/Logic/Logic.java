@@ -6,7 +6,6 @@
 package platformer.Logic;
 
 import java.util.ArrayList;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Input;
 import platformer.Entities.*;
 
@@ -16,18 +15,18 @@ import platformer.Entities.*;
  */
 public class Logic {
 
-    private ArrayList<Entity> platforms;
-    private ArrayList<Enemy> enemies;
-    private Input input;
+    private ArrayList<Collidable> platforms;
+    private ArrayList<Collidable> spikes;
+    private final Input input;
     private Player player;
 
-    //get input class from 
+    //get input from GameContainer in GUI
     public Logic(Input input) {
 
-        this.player = new Player(80, 80, 1, 0, 32, 32);
+        this.player = new Player(100, 50, 1, 12, 26);
         this.input = input;
-        this.platforms = new ArrayList<Entity>();
-        this.enemies = new ArrayList<Enemy>();
+        this.platforms = new ArrayList<>();
+        this.spikes = new ArrayList<>();
     }
 
     public void update(int delta) {
@@ -35,7 +34,8 @@ public class Logic {
         applyGravity(delta);
 
         player.move(delta);
-        checkForCollisions();
+        checkForCollisions(platforms);
+        checkForCollisions(spikes);
     }
 
     public void checkInput() {
@@ -53,51 +53,68 @@ public class Logic {
         }
 
     }
+    public void addSpikeArrayList(ArrayList<Collidable> list) {
+        spikes.addAll(list);
+    }
+
+    public void addPlatformArrayList(ArrayList<Collidable> list) {
+        platforms.addAll(list);
+    }
+    
+    public void addPlatform(Collidable e) {
+        platforms.add(e);
+    }
 
     public Player getPlayer() {
         return player;
     }
 
-    public ArrayList<Entity> getPlatforms() {
+    public ArrayList<Collidable> getPlatforms() {
         return platforms;
-    }
-
-    public void addPlatform(Entity p) {
-        platforms.add(p);
     }
 
     public void applyGravity(int delta) {
         player.applyGravityAndVelocity(delta);
     }
 
-    public void checkForCollisions() {
+    public void checkForCollisions(ArrayList<Collidable> collidables) {
 
-        for (Entity platform : platforms) {
+        for (Collidable platform : collidables) {
             if (player.getHitbox().intersects(platform.getHitbox())) {
-                //if intersecting, set platform color to green
-                platform.setC(Color.green);
-                //if intersecting from left and player Y coordinate is between a platform
-                if (player.getX_old() < platform.getX() && player.yIsInsidePlatform(platform)) {
-                    player.setLocation(platform.getX() - player.getWidth() - 2.5f, player.getY());
-                    player.setX_vel(0);
-                } //if intersecting from right and player Y coordinate is between a platform
-                else if (player.getX_old() > platform.getX() + platform.getWidth() && player.yIsInsidePlatform(platform)) {
-                    player.setLocation(platform.getX() + platform.getWidth() + 2.5f, player.getY());
-                    player.setX_vel(0);
-                } //if falling from above && player x coordinate is inside platform
-                else if (player.getY_old() < platform.getY() && player.xIsInsidePlatform(platform) && player.isFalling()) {
-                    player.setLocation(player.getX(), platform.getY() - player.getHeight());
-                    player.setOnPlatform(true);
-                    player.setY_vel(0);
-                } //if coming towards platform from under && player x coordinate is inside platform
-                else if (player.getY_old() > platform.getY() + platform.getHeight() && player.xIsInsidePlatform(platform) && player.isFlying()) {
-                    player.setLocation(player.getX(), platform.getY() + platform.getHeight());
-                    player.setY_vel(0);
+                
+                if (platform.getCollisionDamage() > 0) {
+                    
+                    
+                    player.takeDamage(platform.getCollisionDamage());
                 }
-            } else {
-                //if not intersecting set platform color to white
-                platform.setC(Color.white);
+                //if coming from left
+                if (player.getMaxX_old() < platform.getX_old()) {
+                    player.setLocation(platform.getX() - player.getWidth() - 0.1f, player.getY());
+                    player.setX_vel(platform.getX_vel());
+                } 
+                //if coming from right
+                else if (player.getX_old() > platform.getMaxX_old()) {
+                    player.setLocation(platform.getMaxX() + 0.1f, player.getY());
+                    player.setX_vel(platform.getX_vel());
+                }
             }
+            
+            if (player.getHitbox().intersects(platform.getHitbox())) {
+                
+                //if coming from above
+                if (player.getMaxY_old() < platform.getY_old()) {
+                    player.setLocation(player.getX(), platform.getY() - player.getHeight() - 0.1f);
+                    player.setY_vel(platform.getY_vel());
+                    player.setOnPlatform(true);
+                } 
+                //if coming from under
+                else if (player.getY_old() > platform.getMaxY_old()) {
+                    player.setLocation(player.getX(), platform.getMaxY() + 0.1f);
+                    player.setY_vel(platform.getY_vel());
+                }
+            }
+
+            
         }
     }
 }

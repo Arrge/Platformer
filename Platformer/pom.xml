@@ -100,7 +100,8 @@
                 <version>0.30</version>
                 <configuration>
                     <targetClasses>
-                        <param>platformer.Entities.*</param>
+                        <param>platformer.Entities.Entity</param>
+                        <param>platformer.Entities.Player</param>
                         <param>platformer.Logic.*</param>
                     </targetClasses>
                     <targetTests>
