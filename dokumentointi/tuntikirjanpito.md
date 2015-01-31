@@ -14,3 +14,4 @@
 | 28.01.2015 | väliaikaisten grafiikoiden piirtämistä & piikkien implementointia | 2.5h |
 | 29.01.2015 | piikki, healthi ja damage, sekä jännien maven/junit bugien korjausta | 2h |
 | 29.01.2015 | koodin siistimistä, pari junit testiä, luokkakaavion päivitys, deadlineen valmstautumista | 2h |
+| 30.01.2015 | liikkuva vihollinen implementoitu | 2h |

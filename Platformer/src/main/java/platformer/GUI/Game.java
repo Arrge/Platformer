@@ -9,6 +9,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import platformer.Entities.Entity;
+import platformer.Entities.PatrollingEnemy;
 import platformer.Logic.Logic;
 import platformer.Sprites.SpriteHandler;
 
@@ -36,8 +37,12 @@ public class Game extends BasicGame {
     }
 
     public void render(GameContainer container, Graphics g) throws SlickException {
-        sh.getMaps().get(0).render(0 - (int) w.getPlayer().getX_offset(), 0 - (int) w.getPlayer().getY_offset());
+        sh.getMaps().get(0).render(0 - (int) w.getPlayer().getX_offset(), 0 - (int) w.getPlayer().getY_offset(),0);
 
+        for (PatrollingEnemy p : w.getPatrollingEnemies()) {
+            g.drawImage(sh.getSprite(p.getSpriteSheetId()), p.getX() - w.getPlayer().getX_offset(), p.getY() - w.getPlayer().getY_offset());
+            
+        }
         g.setColor(new Color(w.getPlayer().getOpacity(), 128, 128, 255));
         //g.drawImage(sprite, w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset());
         g.fillRect(w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset(), w.getPlayer().getWidth(), w.getPlayer().getHeight());
@@ -52,8 +57,8 @@ public class Game extends BasicGame {
         w = new Logic(container.getInput());
         sh = new SpriteHandler();
         w.addPlatformArrayList(sh.getMapPlatforms(0));
-        w.addSpikeArrayList(sh.getSpikes(0));
-        
+        w.addDamagingCollidablesArrayList(sh.getSpikes(0));
+        w.addPatrollingEnemiesArrayList(sh.getPatrollingEnemies(0));
 
     }
 
