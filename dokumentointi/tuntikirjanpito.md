@@ -15,3 +15,5 @@
 | 29.01.2015 | piikki, healthi ja damage, sekä jännien maven/junit bugien korjausta | 2h |
 | 29.01.2015 | koodin siistimistä, pari junit testiä, luokkakaavion päivitys, deadlineen valmstautumista | 2h |
 | 30.01.2015 | liikkuva vihollinen implementoitu | 2h |
+| 02.02.2015 | javadoc, luokkakaavion muokkailua, pit testien kanssa taistelua | 1.5h |
+| 05.02.2015 | junit testejä ja deadlineviimeistelyt | 1h |
