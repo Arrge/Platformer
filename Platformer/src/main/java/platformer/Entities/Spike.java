@@ -6,7 +6,7 @@
 package platformer.Entities;
 
 /**
- *
+ * a platform that deals damage when collided with
  * @author Joonas
  */
 public class Spike extends Entity implements Collidable {
@@ -18,7 +18,11 @@ public class Spike extends Entity implements Collidable {
         
     }
 
-    //convert entity e to spike
+    /**
+     * convert entity to spike
+     * @param collisionDamage
+     * @param e 
+     */
     public Spike(int collisionDamage, Entity e) {
         
         super(e.getX(), e.getY(), e.getSpriteSheetId(), e.getWidth(), e.getHeight(),collisionDamage);

@@ -5,16 +5,15 @@
  */
 package platformer.Entities;
 
-import com.sun.javafx.geom.Vec2f;
 import java.util.Random;
 
 /**
- *
+ * Controllable player character
  * @author Joonas
  */
 public class Player extends Entity {
 
-    //save old coordinates after movement to help collision detection
+    
     private boolean onPlatform;
     private int health;
     private float immunityTimer;
@@ -30,25 +29,36 @@ public class Player extends Entity {
         immunityTimer = immunityTime+1;
     }
 
+    /**
+     * if player is on platform set negative y velocity
+     */
     public void jump() {
         if (isOnPlatform() && Math.abs(getY_vel()) < 10f) {
             setY_vel(-200f);
             setOnPlatform(false);
         }
     }
-
+    /**
+     * set negative x velocity
+     */
     public void goLeft() {
         if (true) {
             setX_vel(-150f);
         }
     }
 
+    /**
+     * set positive x velocity
+     */
     public void goRight() {
         if (true) {
             setX_vel(150f);
         }
     }
-
+    /**
+     * take damage if not immune and don't let health go below zero
+     * @param damage 
+     */
     public void takeDamage(int damage) {
         
         if (immunityTimer > immunityTime) {
@@ -60,11 +70,19 @@ public class Player extends Entity {
         }
         
     }
-
+    /**
+     * 
+     * @return true if health is over zero 
+     */
     public boolean isAlive() {
         return health > 0;
+        
     }
 
+    /**
+     * simulates gravity and velocity on the player
+     * @param delta milliseconds since last tick
+     */
     public void applyGravityAndVelocity(int delta) {
         
         immunityTimer += 1 * ((float) delta / 1000f);
@@ -96,12 +114,15 @@ public class Player extends Entity {
 /////// get & set methods /////////////
 ///////////////////////////////////////
     
-    
+    /**
+     * get the opacity
+     * @return 
+     */
     public int getOpacity() {
         if (immunityTimer < immunityTime) {
             return new Random().nextInt(255);
         }else {
-            return 0;
+            return 255;
         }
     }
 
@@ -109,10 +130,18 @@ public class Player extends Entity {
         return health;
     }
 
+    /**
+     * get the x offset from middle of the screen
+     * @return 
+     */
     public float getX_offset() {
         return getX() - 400;
     }
 
+    /**
+     * get the y offset from middle of the screen
+     * @return 
+     */
     public float getY_offset() {
         return getY() - 300;
     }

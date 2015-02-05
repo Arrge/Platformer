@@ -16,7 +16,7 @@ import platformer.Entities.PatrollingEnemy;
 import platformer.Entities.Spike;
 
 /**
- *
+ * Handles spritesheets and TILED maps (.tmx files)
  * @author Joonas
  */
 public class SpriteHandler {
@@ -25,6 +25,10 @@ public class SpriteHandler {
     private ArrayList<TiledMap> maps;
     private ArrayList<ArrayList<Entity>> maptiles;
 
+    /**
+     * read all maps and spritesheets
+     * @throws SlickException 
+     */
     public SpriteHandler() throws SlickException {
         Image img = new Image("src/resources/tileset.png");
         maps = new ArrayList<>();
@@ -54,9 +58,13 @@ public class SpriteHandler {
             }
         }
     }
-
+    /**
+     * convert .tmx tileid to spritesheet coordinates
+     * @param id
+     * @return 
+     */
     public Image getSprite(int id) {
-        //convert .tmx tileid to spritesheet coordinates
+        
         id = id;
         int x = id % 10;
         int y = (id - (id % 10)) / 10;
@@ -66,7 +74,11 @@ public class SpriteHandler {
     public ArrayList<TiledMap> getMaps() {
         return maps;
     }
-
+    /**
+     * get all plaforms (entities that dont deal damage)
+     * @param mapid
+     * @return 
+     */
     public ArrayList<Collidable> getMapPlatforms(int mapid) {
         ArrayList<Collidable> result = new ArrayList<>();
         for (Entity e : maptiles.get(mapid)) {
@@ -76,7 +88,11 @@ public class SpriteHandler {
         }
         return result;
     }
-
+    /**
+     * get all spikes
+     * @param mapid
+     * @return 
+     */
     public ArrayList<Collidable> getSpikes(int mapid) {
         ArrayList<Collidable> result = new ArrayList<>();
         
@@ -90,13 +106,17 @@ public class SpriteHandler {
         }
         return result;
     }
-    //patrolling enemytiles come in pairs. The first one is the minimum x coordinate of patrol radius and the second one is the maximum x coordinate
+    /**
+     * create enemies from a pairs of patrollingEnemy sprites
+     * @param mapid
+     * @return arraylist containing all patrollingEnemies in the map
+     */
     public ArrayList<PatrollingEnemy> getPatrollingEnemies(int mapid) {
         int radiusMinX = -1;
         int radiusMaxX = -1;
         ArrayList<PatrollingEnemy> result = new ArrayList<>();
         Entity e;
-        
+        //patrolling enemytiles come in pairs. The first one is the minimum x coordinate of patrol radius and the second one is the maximum x coordinate
         for (int i = 0; i < maptiles.get(mapid).size();i++) {
             e = maptiles.get(mapid).get(i);
             if (e.getSpriteSheetId() == 6) {

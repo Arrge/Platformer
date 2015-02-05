@@ -6,7 +6,10 @@
 package platformer.Entities;
 
 import org.newdawn.slick.geom.Rectangle;
-
+/**
+ * basic platform/entity
+ * @author Joonas
+ */
 public class Entity implements Collidable {
 
     private float x_vel, y_vel;
@@ -14,7 +17,14 @@ public class Entity implements Collidable {
     private float x_old, y_old;
     private int spriteSheetId;
     private int collisionDamage;
-
+    /**
+     * entity without collision damage
+     * @param x
+     * @param y
+     * @param spriteSheetId
+     * @param width
+     * @param height 
+     */
     public Entity(float x, float y, int spriteSheetId, float width, float height) {
         this.hitbox = new Rectangle(x, y, width, height);
         this.spriteSheetId = spriteSheetId;
@@ -24,7 +34,15 @@ public class Entity implements Collidable {
         x_vel = 0;
         collisionDamage = 0;
     }
-
+    /**
+     * entity with collision damage
+     * @param x
+     * @param y
+     * @param spriteSheetId
+     * @param width
+     * @param height
+     * @param collisionDamage 
+     */
     public Entity(float x, float y, int spriteSheetId, float width, float height, int collisionDamage) {
         this.hitbox = new Rectangle(x, y, width, height);
         this.spriteSheetId = spriteSheetId;
@@ -38,7 +56,10 @@ public class Entity implements Collidable {
     public void setLocation(float x, float y) {
         getHitbox().setLocation(x, y);
     }
-
+    /**
+     * set location to currentlocation + velocity
+     * @param delta milliseconds since last tick
+     */
     public void move(int delta) {
         x_old = getX();
         y_old = getY();

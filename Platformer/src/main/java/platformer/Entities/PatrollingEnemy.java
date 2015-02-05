@@ -5,7 +5,7 @@
  */
 package platformer.Entities;
 
-import org.lwjgl.opencl.APPLESetMemObjectDestructor;
+
 
 /**
  *
@@ -23,7 +23,10 @@ public class PatrollingEnemy extends Entity implements Collidable{
         System.out.println(radiusMinX);
         System.out.println(radiusMaxX);
     }
-    
+    /**
+     * moves the enemy inside the patrol radius
+     * @param delta milliseconds since last tick
+     */
     public void update(int delta) {
         move(delta);
         if (getX() < radiusMinX) {

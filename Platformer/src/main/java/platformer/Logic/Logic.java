@@ -10,7 +10,7 @@ import org.newdawn.slick.Input;
 import platformer.Entities.*;
 
 /**
- *
+ * Class that contains logic for the game
  * @author Joonas
  */
 public class Logic {
@@ -21,7 +21,10 @@ public class Logic {
     private final Input input;
     private Player player;
 
-    //get input from GameContainer in GUI
+    /**
+     * 
+     * @param input get input from GameContainer in GUI
+     */
     public Logic(Input input) {
 
         this.player = new Player(100, 250, 1, 12, 26);
@@ -31,6 +34,10 @@ public class Logic {
         this.PatrollingEnemies = new ArrayList<>();
     }
 
+    /**
+     * update the game to next frame
+     * @param delta milliseconds since last tick
+     */
     public void update(int delta) {
         checkInput();
         applyGravity(delta);
@@ -39,10 +46,12 @@ public class Logic {
         updatePatrollingEnemies(delta);
         checkForCollisions(damagingCollidables);
         checkForCollisions(platforms);
-        
-        
+
     }
 
+    /**
+     * checks keys and apply movement to player
+     */
     public void checkInput() {
         if (input.isKeyDown(Input.KEY_A)) {
             player.goLeft();
@@ -58,56 +67,69 @@ public class Logic {
         }
 
     }
-    
+    /**
+     * 
+     * @param delta milliseconds since last tick
+     */
     public void updatePatrollingEnemies(int delta) {
-        for (PatrollingEnemy p : PatrollingEnemies ) {
+        for (PatrollingEnemy p : PatrollingEnemies) {
             p.update(delta);
         }
     }
- 
+    /**
+     * apply gravity to objects
+     * @param delta milliseconds since last tick
+     */
     public void applyGravity(int delta) {
         player.applyGravityAndVelocity(delta);
     }
 
+    /**
+     * Check for collisions between the player and a collidable object
+     *
+     * @param collidables
+     */
     public void checkForCollisions(ArrayList<Collidable> collidables) {
-
-        for (Collidable platform : collidables) {
-            if (player.getHitbox().intersects(platform.getHitbox())) {
-                if (platform.getCollisionDamage() > 0) {
-                    player.takeDamage(platform.getCollisionDamage());
-                }
-                //if coming from left
-                if (player.getMaxX_old() < platform.getX_old()) {
-                    player.setLocation(platform.getX() - player.getWidth() - 0.1f, player.getY());
-                    player.setX_vel(platform.getX_vel());
-                } 
-                //if coming from right
-                else if (player.getX_old() > platform.getMaxX_old()) {
-                    player.setLocation(platform.getMaxX() + 0.1f, player.getY());
-                    player.setX_vel(platform.getX_vel());
-                }
-            }
-            
-            if (player.getHitbox().intersects(platform.getHitbox())) {
-                //if coming from above
-                if (player.getMaxY_old() < platform.getY_old()) {
-                    player.setLocation(player.getX(), platform.getY() - player.getHeight() - 0.1f);
-                    player.setY_vel(platform.getY_vel());
-                    player.setX_vel(platform.getX_vel());
-                    player.setOnPlatform(true);
-                } 
-                //if coming from under
-                else if (player.getY_old() > platform.getMaxY_old()) {
-                    player.setLocation(player.getX(), platform.getMaxY() + 0.1f);
-                    player.setY_vel(platform.getY_vel());
-                    player.setX_vel(platform.getX_vel());
-                }
-            }
-
-            
+        for (Collidable collidable : collidables) {
+            checkHorizontalCollisions(collidable);
+            checkVerticalCollisions(collidable);
         }
     }
-    
+
+    private void checkHorizontalCollisions(Collidable collidable) {
+        if (player.getHitbox().intersects(collidable.getHitbox())) {
+            if (collidable.getCollisionDamage() > 0) {
+                player.takeDamage(collidable.getCollisionDamage());
+            }
+            //if coming from left
+            if (player.getMaxX_old() < collidable.getX_old()) {
+                player.setLocation(collidable.getX() - player.getWidth() - 0.1f, player.getY());
+                player.setX_vel(collidable.getX_vel());
+            } //if coming from right
+            else if (player.getX_old() > collidable.getMaxX_old()) {
+                player.setLocation(collidable.getMaxX() + 0.1f, player.getY());
+                player.setX_vel(collidable.getX_vel());
+            }
+        }
+    }
+
+    private void checkVerticalCollisions(Collidable collidable) {
+        if (player.getHitbox().intersects(collidable.getHitbox())) {
+            //if coming from above
+            if (player.getMaxY_old() < collidable.getY_old()) {
+                player.setLocation(player.getX(), collidable.getY() - player.getHeight() - 0.1f);
+                player.setY_vel(collidable.getY_vel());
+                player.setX_vel(collidable.getX_vel());
+                player.setOnPlatform(true);
+            } //if coming from under
+            else if (player.getY_old() > collidable.getMaxY_old()) {
+                player.setLocation(player.getX(), collidable.getMaxY() + 0.1f);
+                player.setY_vel(collidable.getY_vel());
+                player.setX_vel(collidable.getX_vel());
+            }
+        }
+    }
+
     public ArrayList<Collidable> getPlatforms() {
         return platforms;
     }
@@ -115,15 +137,13 @@ public class Logic {
     public ArrayList<PatrollingEnemy> getPatrollingEnemies() {
         return PatrollingEnemies;
     }
-    
-    
-    
+
     public void addPatrollingEnemiesArrayList(ArrayList<PatrollingEnemy> list) {
         PatrollingEnemies.addAll(list);
         damagingCollidables.addAll(list);
-        
+
     }
-    
+
     public void addDamagingCollidablesArrayList(ArrayList<Collidable> list) {
         damagingCollidables.addAll(list);
     }
@@ -131,7 +151,7 @@ public class Logic {
     public void addPlatformArrayList(ArrayList<Collidable> list) {
         platforms.addAll(list);
     }
-    
+
     public void addPlatform(Collidable e) {
         platforms.add(e);
     }
@@ -140,5 +160,4 @@ public class Logic {
         return player;
     }
 
-    
 }
