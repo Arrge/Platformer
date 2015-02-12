@@ -45,6 +45,7 @@ public class LogicJUnitTest {
         w.getPlayer().setLocation(40, 0);
         w.addPlatform(new Entity(32, 100, 1, 32, 32));
         w.addPlatform(new Spike(25, 300, 100, 4, 32, 32));
+        w.addPlatform(new Spike(25, new Entity(320, 100, 1, 32, 32)));
         platform = w.getPlatforms().get(0);
         p = w.getPlayer();
     }

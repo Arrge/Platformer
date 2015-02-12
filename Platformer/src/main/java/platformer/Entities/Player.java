@@ -23,9 +23,9 @@ public class Player extends Entity {
     public Player(int x, int y, int spriteSheetId, int width, int height) {
         super(x, y, spriteSheetId, width, height);
         onPlatform = false;
-        health = 100;
+        health = 50;
         
-        immunityTime = 3;
+        immunityTime = 2;
         immunityTimer = immunityTime+1;
     }
 
@@ -65,8 +65,9 @@ public class Player extends Entity {
             health -= damage;
             immunityTimer = 0;
         }
-        if (health < 0) {
-            health = 0;
+        if (health <= 0) {
+            health = 50;
+            setLocation(100, 300);
         }
         
     }

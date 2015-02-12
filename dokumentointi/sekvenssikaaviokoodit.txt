@@ -1,0 +1,32 @@
+title Logic loop
+
+
+Game -> Logic:update()
+Logic -> Logic: checkInput()
+Logic -> Logic: applygravity(delta)
+Logic -> Player: move(delta)
+Logic -> Logic: updateFirespinners(delta)
+Logic -> Logic: updatePatrollingEnemies(delta)
+Logic -> Logic: checkForCollisions(damagingCollidables)
+Logic -> Logic: checkForCollisions(platforms);
+Logic -> Logic: checkFirespinners();
+
+--------------------------------------------------------------
+
+title Spritehandler
+Participant Game
+Participant Logic
+
+Game -> SpriteHandler: New SpriteHandler()
+SpriteHandler -> SpriteHandler: readMaps()
+
+Logic -> SpriteHandler: addPatrollingEnemiesArrayList
+SpriteHandler --> Logic: getPatrollingEnemies(mapID)
+
+Logic -> SpriteHandler: addFirespinnerArrayList
+SpriteHandler --> Logic: getFirespinners(mapID)
+
+Logic -> SpriteHandler: addDamagingCollidablesArrayList
+SpriteHandler --> Logic: getSpikes(mapID)
+Logic -> SpriteHandler: addPlatformArrayList
+SpriteHandler --> Logic: getMapPlatforms(mapID)

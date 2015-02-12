@@ -12,6 +12,7 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
 import platformer.Entities.Collidable;
 import platformer.Entities.Entity;
+import platformer.Entities.Firespinner;
 import platformer.Entities.PatrollingEnemy;
 import platformer.Entities.Spike;
 
@@ -35,10 +36,12 @@ public class SpriteHandler {
         maps.add(new TiledMap("src/resources/test.tmx"));
         sprites = new SpriteSheet(img, 32, 32);
         maptiles = new ArrayList<>();
-
+        
+        readMaps();  
+    }
+    
+    public void readMaps() {
         Entity entity;
-
-        // save all tiles to maptiles
         for (int i = 0; i < maps.size(); i++) {
             maptiles.add(new ArrayList<Entity>());
             
@@ -71,9 +74,26 @@ public class SpriteHandler {
         return sprites.getSprite(x, y);
     }
 
+    
+    
     public ArrayList<TiledMap> getMaps() {
         return maps;
     }
+    
+    public ArrayList<Firespinner> getFirespinners(int mapid) {
+        ArrayList<Firespinner> result = new ArrayList<>();
+        Firespinner fp;
+        for (Entity e : maptiles.get(mapid)) {
+            if (e.getSpriteSheetId() == 7) {
+                
+                fp = new Firespinner((int)e.getX(), (int)e.getY(), 25);
+                result.add(fp);
+            }
+        }
+        System.out.println(result.toString());
+        return result;
+    }
+    
     /**
      * get all plaforms (entities that dont deal damage)
      * @param mapid

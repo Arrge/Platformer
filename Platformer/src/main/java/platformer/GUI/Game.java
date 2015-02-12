@@ -9,7 +9,9 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import platformer.Entities.Entity;
+import platformer.Entities.Firespinner;
 import platformer.Entities.PatrollingEnemy;
+import platformer.Entities.Spike;
 import platformer.Logic.Logic;
 import platformer.Sprites.SpriteHandler;
 
@@ -43,6 +45,13 @@ public class Game extends BasicGame {
             g.drawImage(sh.getSprite(p.getSpriteSheetId()), p.getX() - w.getPlayer().getX_offset(), p.getY() - w.getPlayer().getY_offset());
             
         }
+        
+        for (Firespinner fs : w.getFirespinners()) {
+            for (Spike s : fs.getFireballs()) {
+                g.drawImage(sh.getSprite(s.getSpriteSheetId()), s.getX() - w.getPlayer().getX_offset(), s.getY() - w.getPlayer().getY_offset());
+            }
+        }
+        
         g.setColor(new Color(w.getPlayer().getOpacity(), 128, 128, 255));
         //g.drawImage(sprite, w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset());
         g.fillRect(w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset(), w.getPlayer().getWidth(), w.getPlayer().getHeight());
@@ -59,6 +68,7 @@ public class Game extends BasicGame {
         w.addPlatformArrayList(sh.getMapPlatforms(0));
         w.addDamagingCollidablesArrayList(sh.getSpikes(0));
         w.addPatrollingEnemiesArrayList(sh.getPatrollingEnemies(0));
+        w.addFirespinnerArrayList(sh.getFirespinners(0));
 
     }
 

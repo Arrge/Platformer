@@ -18,6 +18,7 @@ public class Logic {
     private ArrayList<Collidable> platforms;
     private ArrayList<Collidable> damagingCollidables;
     private ArrayList<PatrollingEnemy> PatrollingEnemies;
+    private ArrayList<Firespinner> firespinners;
     private final Input input;
     private Player player;
 
@@ -32,6 +33,7 @@ public class Logic {
         this.platforms = new ArrayList<>();
         this.damagingCollidables = new ArrayList<>();
         this.PatrollingEnemies = new ArrayList<>();
+        this.firespinners = new ArrayList<>();
     }
 
     /**
@@ -43,9 +45,11 @@ public class Logic {
         applyGravity(delta);
 
         player.move(delta);
+        updateFirespinners(delta);
         updatePatrollingEnemies(delta);
         checkForCollisions(damagingCollidables);
         checkForCollisions(platforms);
+        checkFirespinners();
 
     }
 
@@ -74,6 +78,12 @@ public class Logic {
     public void updatePatrollingEnemies(int delta) {
         for (PatrollingEnemy p : PatrollingEnemies) {
             p.update(delta);
+        }
+    }
+    
+    public void updateFirespinners(int delta) {
+        for (Firespinner fp : firespinners) {
+            fp.update(delta);
         }
     }
     /**
@@ -129,6 +139,23 @@ public class Logic {
             }
         }
     }
+    
+    public void checkFirespinners() {
+        ArrayList<Collidable> collidables;
+        for (Firespinner fs : firespinners) {
+            collidables = new ArrayList<>();
+            collidables.addAll(fs.getFireballs());
+            checkOnlyCollisionDamage(collidables );
+        }
+    }
+    
+    public void checkOnlyCollisionDamage(ArrayList<Collidable> collidables) {
+        for (Collidable c : collidables) {
+            if (player.getHitbox().intersects(c.getHitbox())) {
+                player.takeDamage(c.getCollisionDamage());
+            }
+        }
+    }
 
     public ArrayList<Collidable> getPlatforms() {
         return platforms;
@@ -138,10 +165,20 @@ public class Logic {
         return PatrollingEnemies;
     }
 
+    public ArrayList<Firespinner> getFirespinners() {
+        return firespinners;
+    }
+
+    
+    
     public void addPatrollingEnemiesArrayList(ArrayList<PatrollingEnemy> list) {
         PatrollingEnemies.addAll(list);
         damagingCollidables.addAll(list);
 
+    }
+    
+    public void addFirespinnerArrayList(ArrayList<Firespinner> list) {
+        firespinners.addAll(list);
     }
 
     public void addDamagingCollidablesArrayList(ArrayList<Collidable> list) {

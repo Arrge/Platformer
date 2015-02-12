@@ -8,7 +8,7 @@ package platformer.Entities;
 
 
 /**
- *
+ * Enemy that moves back and forth inside its patrol radius
  * @author Joonas
  */
 public class PatrollingEnemy extends Entity implements Collidable{

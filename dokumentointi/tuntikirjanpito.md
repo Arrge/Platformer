@@ -1,6 +1,6 @@
 ﻿#Tuntikirjanpito
 
-| pvm    	 | Kuvaus        | Aika  |
+| pvm        | Kuvaus        | Aika  |
 |:-----------|:--------------|:------|
 | 15.01.2015 | Deadline 1 tehtävät | 2h |
 | 18.01.2015 | slick2d kirjaston kanssa säätämistä | 1h |
@@ -17,3 +17,6 @@
 | 30.01.2015 | liikkuva vihollinen implementoitu | 2h |
 | 02.02.2015 | javadoc, luokkakaavion muokkailua, pit testien kanssa taistelua | 1.5h |
 | 05.02.2015 | junit testejä ja deadlineviimeistelyt | 1h |
+| 09.02.2015 | Spritejen piirtämistä ja coberturan kanssa taistelemista | 1h |
+| 10.02.2015 | Firespinner implementoitu | 1.5h |
+| 12.02.2015 | bugien korjausta, junit testejä, sekvenssikaavioita yms. deadlineen valmistautumista | 2h |
