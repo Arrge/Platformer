@@ -52,7 +52,11 @@ public class Entity implements Collidable {
         x_vel = 0;
         this.collisionDamage = collisionDamage;
     }
-
+    /**
+     * 
+     * @param x
+     * @param y 
+     */
     public void setLocation(float x, float y) {
         getHitbox().setLocation(x, y);
     }

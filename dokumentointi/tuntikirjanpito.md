@@ -20,3 +20,5 @@
 | 09.02.2015 | Spritejen piirtämistä ja coberturan kanssa taistelemista | 1h |
 | 10.02.2015 | Firespinner implementoitu | 1.5h |
 | 12.02.2015 | bugien korjausta, junit testejä, sekvenssikaavioita yms. deadlineen valmistautumista | 2h |
+| 14.02.2015 | level designiä ja liikkumisen hiomista | 1h |
+| 16.02.2015 | bossi implementoitu ja bugeja korjattu | 3h |

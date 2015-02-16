@@ -21,19 +21,21 @@ public class Logic {
     private ArrayList<Firespinner> firespinners;
     private final Input input;
     private Player player;
+    private Boss boss;
 
     /**
      * 
      * @param input get input from GameContainer in GUI
      */
     public Logic(Input input) {
-
-        this.player = new Player(100, 250, 1, 12, 26);
+        boss = new Boss(9, 64, 64);
+        this.player = new Player(50, 100, 1, 12, 26);
         this.input = input;
         this.platforms = new ArrayList<>();
         this.damagingCollidables = new ArrayList<>();
         this.PatrollingEnemies = new ArrayList<>();
         this.firespinners = new ArrayList<>();
+        addDamagingCollidable(boss);
     }
 
     /**
@@ -47,53 +49,13 @@ public class Logic {
         player.move(delta);
         updateFirespinners(delta);
         updatePatrollingEnemies(delta);
+        boss.update(delta);
         checkForCollisions(damagingCollidables);
         checkForCollisions(platforms);
         checkFirespinners();
-
-    }
-
-    /**
-     * checks keys and apply movement to player
-     */
-    public void checkInput() {
-        if (input.isKeyDown(Input.KEY_A)) {
-            player.goLeft();
-        }
-        if (input.isKeyDown(Input.KEY_D)) {
-            player.goRight();
-        }
-        if (input.isKeyDown(Input.KEY_SPACE)) {
-            player.jump();
-        }
-        if (input.isKeyDown(Input.KEY_ESCAPE)) {
-            player.setLocation(200, 200);
-        }
-
-    }
-    /**
-     * 
-     * @param delta milliseconds since last tick
-     */
-    public void updatePatrollingEnemies(int delta) {
-        for (PatrollingEnemy p : PatrollingEnemies) {
-            p.update(delta);
-        }
+        checkForBossFight();
     }
     
-    public void updateFirespinners(int delta) {
-        for (Firespinner fp : firespinners) {
-            fp.update(delta);
-        }
-    }
-    /**
-     * apply gravity to objects
-     * @param delta milliseconds since last tick
-     */
-    public void applyGravity(int delta) {
-        player.applyGravityAndVelocity(delta);
-    }
-
     /**
      * Check for collisions between the player and a collidable object
      *
@@ -108,9 +70,7 @@ public class Logic {
 
     private void checkHorizontalCollisions(Collidable collidable) {
         if (player.getHitbox().intersects(collidable.getHitbox())) {
-            if (collidable.getCollisionDamage() > 0) {
-                player.takeDamage(collidable.getCollisionDamage());
-            }
+            
             //if coming from left
             if (player.getMaxX_old() < collidable.getX_old()) {
                 player.setLocation(collidable.getX() - player.getWidth() - 0.1f, player.getY());
@@ -119,6 +79,11 @@ public class Logic {
             else if (player.getX_old() > collidable.getMaxX_old()) {
                 player.setLocation(collidable.getMaxX() + 0.1f, player.getY());
                 player.setX_vel(collidable.getX_vel());
+            }
+            if (collidable.getCollisionDamage() > 0) {
+                if (player.takeDamage(collidable.getCollisionDamage())) {
+                    boss.reset();
+                }
             }
         }
     }
@@ -139,7 +104,9 @@ public class Logic {
             }
         }
     }
-    
+    /**
+     * check for firespinnercollisions
+     */
     public void checkFirespinners() {
         ArrayList<Collidable> collidables;
         for (Firespinner fs : firespinners) {
@@ -148,15 +115,77 @@ public class Logic {
             checkOnlyCollisionDamage(collidables );
         }
     }
-    
+    /**
+     * apply collision damage without fixing collisions
+     * @param collidables 
+     */
     public void checkOnlyCollisionDamage(ArrayList<Collidable> collidables) {
         for (Collidable c : collidables) {
             if (player.getHitbox().intersects(c.getHitbox())) {
-                player.takeDamage(c.getCollisionDamage());
+                if (player.takeDamage(c.getCollisionDamage())) {
+                    boss.reset();
+                } 
             }
         }
     }
+    /**
+     * check if 
+     */
+    public void checkForBossFight() {
+        if (player.getY() > boss.getStartposY()) {
+            boss.start();
+        }
+    }
+    
+    
+    
+    /**
+     * checks keys and apply movement to player
+     */
+    public void checkInput() {
+        if (input.isKeyDown(Input.KEY_A)) {
+            player.goLeft();
+        }
+        if (input.isKeyDown(Input.KEY_D)) {
+            player.goRight();
+        }
+        if (input.isKeyDown(Input.KEY_SPACE)) {
+            player.jump();
+        }
+        if (input.isKeyDown(Input.KEY_ESCAPE)) {
+            player.setLocation(56*32, 10*32);
+        }
 
+    } 
+    /**
+     * 
+     * @param delta milliseconds since last tick
+     */
+    public void updatePatrollingEnemies(int delta) {
+        for (PatrollingEnemy p : PatrollingEnemies) {
+            p.update(delta);
+        }
+    }
+    /**
+     * 
+     * @param delta milliseconds since last tick
+     */
+    public void updateFirespinners(int delta) {
+        for (Firespinner fp : firespinners) {
+            fp.update(delta);
+        }
+    }
+    /**
+     * apply gravity to objects
+     * @param delta milliseconds since last tick
+     */
+    public void applyGravity(int delta) {
+        player.applyGravityAndVelocity(delta);
+    }
+    
+    ///////////////////
+    //get & set & add//
+    ///////////////////
     public ArrayList<Collidable> getPlatforms() {
         return platforms;
     }
@@ -168,8 +197,6 @@ public class Logic {
     public ArrayList<Firespinner> getFirespinners() {
         return firespinners;
     }
-
-    
     
     public void addPatrollingEnemiesArrayList(ArrayList<PatrollingEnemy> list) {
         PatrollingEnemies.addAll(list);
@@ -184,6 +211,10 @@ public class Logic {
     public void addDamagingCollidablesArrayList(ArrayList<Collidable> list) {
         damagingCollidables.addAll(list);
     }
+    
+    public void addDamagingCollidable(Collidable collidable) {
+        damagingCollidables.add(collidable);
+    }
 
     public void addPlatformArrayList(ArrayList<Collidable> list) {
         platforms.addAll(list);
@@ -197,4 +228,7 @@ public class Logic {
         return player;
     }
 
+    public Boss getBoss() {
+        return boss;
+    }
 }

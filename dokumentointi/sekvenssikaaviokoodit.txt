@@ -20,13 +20,17 @@ Participant Logic
 Game -> SpriteHandler: New SpriteHandler()
 SpriteHandler -> SpriteHandler: readMaps()
 
-Logic -> SpriteHandler: addPatrollingEnemiesArrayList
+Game -> Logic:addPatrollingEnemiesArrayList
 SpriteHandler --> Logic: getPatrollingEnemies(mapID)
 
-Logic -> SpriteHandler: addFirespinnerArrayList
+Game -> Logic:addFirespinnerArrayList
 SpriteHandler --> Logic: getFirespinners(mapID)
 
-Logic -> SpriteHandler: addDamagingCollidablesArrayList
+Game -> Logic:addDamagingCollidablesArrayList
 SpriteHandler --> Logic: getSpikes(mapID)
-Logic -> SpriteHandler: addPlatformArrayList
+Game -> Logic:addPlatformArrayList
 SpriteHandler --> Logic: getMapPlatforms(mapID)
+
+
+
+

@@ -33,13 +33,15 @@ public class SpriteHandler {
     public SpriteHandler() throws SlickException {
         Image img = new Image("src/resources/tileset.png");
         maps = new ArrayList<>();
-        maps.add(new TiledMap("src/resources/test.tmx"));
+        maps.add(new TiledMap("src/resources/test1.tmx"));
         sprites = new SpriteSheet(img, 32, 32);
         maptiles = new ArrayList<>();
         
         readMaps();  
     }
-    
+    /**
+     * read all maps and save the position and spriteid of all entities
+     */
     public void readMaps() {
         Entity entity;
         for (int i = 0; i < maps.size(); i++) {
@@ -66,8 +68,10 @@ public class SpriteHandler {
      * @param id
      * @return 
      */
-    public Image getSprite(int id) {
-        
+    public Image getSprite(int id) throws SlickException {
+        if (id == 9) {
+            return new Image("src/resources/boss.png"); 
+        }
         id = id;
         int x = id % 10;
         int y = (id - (id % 10)) / 10;
@@ -76,10 +80,12 @@ public class SpriteHandler {
 
     
     
-    public ArrayList<TiledMap> getMaps() {
-        return maps;
-    }
     
+    /**
+     * get all firespinners in map
+     * @param mapid level id (0 is first)
+     * @return 
+     */
     public ArrayList<Firespinner> getFirespinners(int mapid) {
         ArrayList<Firespinner> result = new ArrayList<>();
         Firespinner fp;
@@ -90,7 +96,6 @@ public class SpriteHandler {
                 result.add(fp);
             }
         }
-        System.out.println(result.toString());
         return result;
     }
     
@@ -155,5 +160,9 @@ public class SpriteHandler {
 
     public SpriteSheet getSprites() {
         return sprites;
+    }
+    
+    public ArrayList<TiledMap> getMaps() {
+        return maps;
     }
 }

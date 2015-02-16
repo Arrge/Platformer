@@ -5,12 +5,12 @@
  </tileset>
  <layer name="tiles" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NkYGBgpBDDAKXmDFazGKhoFqXuYsLBx2cmOQCfmdQAxJhHbtzgM4sZDybFPHIAofin1Dx8aohJF9RwD6nuI8VMeqQ/YtIQNnFc8iA+Gw7zWHCoR7ePFQkjm4duH7p5tCi70DEAH/Kda0AGAAA=
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkgHADV9EcVABgAA
   </data>
  </layer>
  <layer name="MonsterPatrols" width="20" height="20" opacity="0.4">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAVDCXAQ4A8kYKdQfhSQB9gZRsN2FAwMAABcAZFMQAYAAA==
+   H4sIAAAAAAAAC2NkYGBgRMOUAEr1jwTz0MObkvAnpJ4U84hRS6x5pKgjFo+CUTAKBhcAANUILLZABgAA
   </data>
  </layer>
 </map>

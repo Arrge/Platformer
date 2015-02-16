@@ -20,8 +20,6 @@ public class PatrollingEnemy extends Entity implements Collidable{
         this.radiusMinX = radiusMinX;
         this.radiusMaxX = radiusMaxX;
         setX_vel(150);
-        System.out.println(radiusMinX);
-        System.out.println(radiusMaxX);
     }
     /**
      * moves the enemy inside the patrol radius

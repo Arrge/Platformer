@@ -25,7 +25,7 @@ public class Player extends Entity {
         onPlatform = false;
         health = 50;
         
-        immunityTime = 2;
+        immunityTime = 1;
         immunityTimer = immunityTime+1;
     }
 
@@ -34,7 +34,7 @@ public class Player extends Entity {
      */
     public void jump() {
         if (isOnPlatform() && Math.abs(getY_vel()) < 10f) {
-            setY_vel(-200f);
+            setY_vel(-180f);
             setOnPlatform(false);
         }
     }
@@ -57,19 +57,21 @@ public class Player extends Entity {
     }
     /**
      * take damage if not immune and don't let health go below zero
-     * @param damage 
+     * @param damage
+     * @return true if player died
      */
-    public void takeDamage(int damage) {
+    public boolean takeDamage(int damage) {
         
         if (immunityTimer > immunityTime) {
             health -= damage;
             immunityTimer = 0;
         }
-        if (health <= 0) {
+        if (health <= 0) {   
             health = 50;
-            setLocation(100, 300);
+            setLocation(50, 100);
+            return true;
         }
-        
+        return false;
     }
     /**
      * 
