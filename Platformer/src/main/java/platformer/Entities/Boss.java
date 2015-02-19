@@ -8,7 +8,7 @@ package platformer.Entities;
 import java.util.ArrayList;
 
 /**
- *
+ *a spinning boss entity that goes from a to b
  * @author Joonas
  */
 public class Boss extends Entity implements Collidable {
@@ -27,14 +27,17 @@ public class Boss extends Entity implements Collidable {
         endposX = 88*32;
         started = false;
     }
-    
+    /**
+     * moves the boss forward if the boss has not reached endposX or alternatively start the death animation
+     * @param delta milliseconds since last tick
+     */
     public void update(int delta) {
         
         if (started && getMaxX() < endposX) {
             move(delta);
             setX_vel(getX_vel()+((float)10*((float)delta/1000f)));
         }
-        //if at the end of charge range
+        //if at the end of charge range start the death animation
         else if (started) {
             setX_vel(getX_vel()+((float)50*((float)delta/1000f)));
             time+= delta;
@@ -45,19 +48,24 @@ public class Boss extends Entity implements Collidable {
         }
         
     }
-    
+    /**
+     * Start the advancement of the boss entity 
+     */
     public void start() {
         if (!started) {
             started = true;
             setX_vel(100);
         }
     }
-    
+    /**
+     * reset the boss entity to its default state
+     */
     public void reset() {
         time = 0;
         started = false;
         setX_vel(0);
         setLocation(startposX, startposY);
+        scale = 1;
     }
 
     public int getStartposY() {

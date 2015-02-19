@@ -23,8 +23,8 @@ import platformer.Entities.Spike;
 public class SpriteHandler {
 
     private SpriteSheet sprites;
-    private ArrayList<TiledMap> maps;
-    private ArrayList<ArrayList<Entity>> maptiles;
+    private TiledMap map;
+    private ArrayList<Entity> maptiles;
 
     /**
      * read all maps and spritesheets
@@ -32,8 +32,7 @@ public class SpriteHandler {
      */
     public SpriteHandler() throws SlickException {
         Image img = new Image("src/resources/tileset.png");
-        maps = new ArrayList<>();
-        maps.add(new TiledMap("src/resources/test1.tmx"));
+        map = new TiledMap("src/resources/test1.tmx");
         sprites = new SpriteSheet(img, 32, 32);
         maptiles = new ArrayList<>();
         
@@ -44,24 +43,22 @@ public class SpriteHandler {
      */
     public void readMaps() {
         Entity entity;
-        for (int i = 0; i < maps.size(); i++) {
-            maptiles.add(new ArrayList<Entity>());
-            
-            for (int layer = 0; layer < maps.get(i).getLayerCount(); layer++) {
-                for (int y = 0; y < maps.get(i).getHeight(); y++) {
 
-                    for (int x = 0; x < maps.get(i).getWidth(); x++) {
+        for (int layer = 0; layer < map.getLayerCount(); layer++) {
+            for (int y = 0; y < map.getHeight(); y++) {
 
-                        if (maps.get(i).getTileId(x, y, layer) != 0) {
-                            
-                            entity = new Entity(x * maps.get(i).getTileWidth(), y * maps.get(i).getTileWidth(), maps.get(i).getTileId(x, y, layer)-1, 32, 32);
-                            maptiles.get(i).add(entity);
-                        }
+                for (int x = 0; x < map.getWidth(); x++) {
 
+                    if (map.getTileId(x, y, layer) != 0) {
+
+                        entity = new Entity(x * map.getTileWidth(), y * map.getTileWidth(), map.getTileId(x, y, layer) - 1, 32, 32);
+                        maptiles.add(entity);
                     }
+
                 }
             }
         }
+
     }
     /**
      * convert .tmx tileid to spritesheet coordinates
@@ -86,10 +83,10 @@ public class SpriteHandler {
      * @param mapid level id (0 is first)
      * @return 
      */
-    public ArrayList<Firespinner> getFirespinners(int mapid) {
+    public ArrayList<Firespinner> getFirespinners() {
         ArrayList<Firespinner> result = new ArrayList<>();
         Firespinner fp;
-        for (Entity e : maptiles.get(mapid)) {
+        for (Entity e : maptiles) {
             if (e.getSpriteSheetId() == 7) {
                 
                 fp = new Firespinner((int)e.getX(), (int)e.getY(), 25);
@@ -104,9 +101,9 @@ public class SpriteHandler {
      * @param mapid
      * @return 
      */
-    public ArrayList<Collidable> getMapPlatforms(int mapid) {
+    public ArrayList<Collidable> getMapPlatforms() {
         ArrayList<Collidable> result = new ArrayList<>();
-        for (Entity e : maptiles.get(mapid)) {
+        for (Entity e : maptiles) {
             if (e.getSpriteSheetId() == 0 || e.getSpriteSheetId() == 1) {
                 result.add(e);
             }
@@ -118,10 +115,10 @@ public class SpriteHandler {
      * @param mapid
      * @return 
      */
-    public ArrayList<Collidable> getSpikes(int mapid) {
+    public ArrayList<Collidable> getSpikes() {
         ArrayList<Collidable> result = new ArrayList<>();
         
-        for (Entity e : maptiles.get(mapid)) {
+        for (Entity e : maptiles) {
             // if spike
             if (e.getSpriteSheetId() > 1 && e.getSpriteSheetId() < 6) {
                 
@@ -136,20 +133,20 @@ public class SpriteHandler {
      * @param mapid
      * @return arraylist containing all patrollingEnemies in the map
      */
-    public ArrayList<PatrollingEnemy> getPatrollingEnemies(int mapid) {
+    public ArrayList<PatrollingEnemy> getPatrollingEnemies() {
         int radiusMinX = -1;
         int radiusMaxX = -1;
         ArrayList<PatrollingEnemy> result = new ArrayList<>();
         Entity e;
         //patrolling enemytiles come in pairs. The first one is the minimum x coordinate of patrol radius and the second one is the maximum x coordinate
-        for (int i = 0; i < maptiles.get(mapid).size();i++) {
-            e = maptiles.get(mapid).get(i);
+        for (int i = 0; i < maptiles.size();i++) {
+            e = maptiles.get(i);
             if (e.getSpriteSheetId() == 6) {
                 if (radiusMinX == -1) {
                     radiusMinX = (int)e.getX();
                 } else {
                     radiusMaxX = (int)e.getMaxX();
-                    result.add(new PatrollingEnemy(25, radiusMinX, radiusMaxX, maptiles.get(mapid).get(i-1)));
+                    result.add(new PatrollingEnemy(25, radiusMinX, radiusMaxX, maptiles.get(i-1)));
                     radiusMinX = -1;
                     radiusMaxX = -1;
                 }
@@ -161,8 +158,10 @@ public class SpriteHandler {
     public SpriteSheet getSprites() {
         return sprites;
     }
-    
-    public ArrayList<TiledMap> getMaps() {
-        return maps;
+
+    public TiledMap getMap() {
+        return map;
     }
+    
+    
 }

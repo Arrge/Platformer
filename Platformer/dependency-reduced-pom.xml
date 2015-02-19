@@ -87,7 +87,7 @@
       <plugin>
         <groupId>org.pitest</groupId>
         <artifactId>pitest-maven</artifactId>
-        <version>0.30</version>
+        <version>1.1.4</version>
         <configuration>
           <targetClasses>
             <param>platformer.Entities.Entity</param>

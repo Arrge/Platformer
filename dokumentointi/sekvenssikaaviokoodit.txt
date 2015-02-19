@@ -30,6 +30,15 @@ Game -> Logic:addDamagingCollidablesArrayList
 SpriteHandler --> Logic: getSpikes(mapID)
 Game -> Logic:addPlatformArrayList
 SpriteHandler --> Logic: getMapPlatforms(mapID)
+--------------------------------------------------------------
+title GUI draw loop (Game class)
+Game -> Game: drawStationaryMapEntities()
+Game -> Game: drawBoss()
+Game -> Game: drawPatrollingEnemies(Graphics g)
+Game -> Game: drawFirespinners(Graphics g)
+Game -> Game: drawPlayer(g);
+
+
 
 
 

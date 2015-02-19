@@ -19,7 +19,7 @@ public class Logic {
     private ArrayList<Collidable> damagingCollidables;
     private ArrayList<PatrollingEnemy> PatrollingEnemies;
     private ArrayList<Firespinner> firespinners;
-    private final Input input;
+    private Input input;
     private Player player;
     private Boss boss;
 
@@ -129,7 +129,7 @@ public class Logic {
         }
     }
     /**
-     * check if 
+     * check if player is at the boss fight height
      */
     public void checkForBossFight() {
         if (player.getY() > boss.getStartposY()) {
@@ -143,16 +143,16 @@ public class Logic {
      * checks keys and apply movement to player
      */
     public void checkInput() {
-        if (input.isKeyDown(Input.KEY_A)) {
+        if (input.isKeyDown(Input.KEY_A) || input.isKeyDown(Input.KEY_LEFT)) {
             player.goLeft();
         }
-        if (input.isKeyDown(Input.KEY_D)) {
+        if (input.isKeyDown(Input.KEY_D) || input.isKeyDown(Input.KEY_RIGHT)) {
             player.goRight();
         }
-        if (input.isKeyDown(Input.KEY_SPACE)) {
+        if (input.isKeyDown(Input.KEY_SPACE) || input.isKeyDown(Input.KEY_UP) || input.isKeyDown(Input.KEY_W)) {
             player.jump();
         }
-        if (input.isKeyDown(Input.KEY_ESCAPE)) {
+        if (input.isKeyDown(Input.KEY_F3)) {
             player.setLocation(56*32, 10*32);
         }
 
