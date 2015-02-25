@@ -40,20 +40,20 @@ public class PlayerJUnitTest {
     public void tearDown() {
     }
 
-    
     @Test
     public void goesImmuneWhenAttacked() {
         int health = p.getHealth();
         p.takeDamage(1);
         p.takeDamage(1);
-        assertTrue(p.getHealth() == health-1);
+        assertTrue(p.getHealth() == health - 1);
     }
+
     @Test
     public void healthDoesntGoBelowZero() {
-        p.takeDamage(p.getHealth()+1);
+        p.takeDamage(p.getHealth() + 1);
         assertTrue(p.getHealth() >= 0);
     }
-    
+
     @Test
     public void gravityIncreasesFallSpeed() {
         p.applyGravityAndVelocity(17);
@@ -92,6 +92,31 @@ public class PlayerJUnitTest {
         p.applyGravityAndVelocity(17);
         p.move(17);
         assertTrue(p.getX_old() < p.getX());
+    }
+
+    @Test
+    public void dontTakeDamageWhenImmune() {
+        int health = p.getHealth();
+        p.setImmunityTimer(p.getImmunityTime());
+        p.takeDamage(10);
+        assertTrue(health == p.getHealth());
+    }
+
+    @Test
+    public void HealthResetsToFullWhenPlayerDies() {
+        p.takeDamage(p.getHealth());
+        assertTrue(p.getX() == 50 && p.getY() == 100 && p.getHealth() == 50);
+    }
+
+    @Test
+    public void opacityChangesWhenImmune() {
+        p.takeDamage(1);
+        assertTrue(p.getOpacity() != 255);
+    }
+
+    @Test
+    public void opacityDoesntChangeIfNotImmune() {
+        assertTrue(p.getOpacity() == 255);
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

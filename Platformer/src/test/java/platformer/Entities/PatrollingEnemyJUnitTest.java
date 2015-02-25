@@ -17,23 +17,25 @@ import static org.junit.Assert.*;
  * @author Joonas
  */
 public class PatrollingEnemyJUnitTest {
+
     PatrollingEnemy pe;
+
     public PatrollingEnemyJUnitTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         pe = new PatrollingEnemy(22, 10, 150, new Entity(10, 0, 1, 32, 32, 10));
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,6 +46,7 @@ public class PatrollingEnemyJUnitTest {
         pe.update(1000);
         assertTrue(pe.getX_vel() > 0);
     }
+
     @Test
     public void turnsAtMaxX() {
         pe.update(1000);

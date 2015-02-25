@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="90" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
-  <image source="tileset.png" width="320" height="320"/>
- </tileset>
- <layer name="Tile Layer 1" width="100" height="90">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ajY6DIBBGUa11E9//hRvjmrA4A8OP7lTvSYiKSle+irTdcRiG8YvK3cXX2HLNZ5/79Dxe0b5XUKT9qf6aM/XksSnNQ1pqbe3ev8f+JOrJY3NGHtK9MAXrs1BPHpsxWg+fm9L4lNpez9PuhZ22nzw2cR5TUDcFxbIdnpci7SePTc9rZH7Vruf8/uzPFk/7/NLj793HPGspeU3rsdJxT82jB+393JJHyfle1LxXtWXt66fGF/I47g/LrCxrXtcy3j8xj57PzNR6zfP3aXn0sN8nc2bd2lZq23pe6fl30nPeKeWxlpfSZlgfnyO1hzKt/RfnTx5tes7VWtuD/kzP1WvjI3m0CefV4VwgV08e5+g1/yYPX8jDF/Lwg/HKF/Lwhzx8IQ9fyMOXMI+rC47OzGOn/W8AmRxdkYfkbTjm7nLfl2j9Gf/vq1ZPHmU8XT95+Lp+8qj/3jc3ruX2z0LheV5m78dR2ZaO1+qZ87bL3Se543Nt4xrWMRD/jzx8IQ9fyMMX8vCFPHwhD1/Iwxfy8IU8ztH6G1WP37OwuaqvyMTmyj4ij7yWsap2fINu7aNl+Ntni7K01C2JbfLIs+ZhrZPaCdeRlrofanLRtsnDpiSPkjqtHmml/Vz6/GC8KsP8CgAAAAAAAAAAAAAAAAAAAAAAAPgOH3KpyaKgjAAA
-  </data>
- </layer>
- <layer name="monsters" width="100" height="90">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ZsQ4AEAwFwG78/xdbbU1DSLgb31CLN9AIAGa9mMOrsjuvEwAA3NKK+eoZO+fCj+b3Y9YnfTvPXxgAAAAAAEDOTgUAAAAAAAAAAAAAAAAAAAAAAAAAAACAGwYyoxiloIwAAA==
-  </data>
- </layer>
+    <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
+        <image source="tileset.png" width="320" height="320"/>
+    </tileset>
+    <layer name="Tile Layer 1" width="100" height="90">
+        <data encoding="base64" compression="gzip">
+            H4sIAAAAAAAAC+3ajY6DIBBGUa11E9//hRvjmrA4A8OP7lTvSYiKSle+irTdcRiG8YvK3cXX2HLNZ5/79Dxe0b5XUKT9qf6aM/XksSnNQ1pqbe3ev8f+JOrJY3NGHtK9MAXrs1BPHpsxWg+fm9L4lNpez9PuhZ22nzw2cR5TUDcFxbIdnpci7SePTc9rZH7Vruf8/uzPFk/7/NLj793HPGspeU3rsdJxT82jB+393JJHyfle1LxXtWXt66fGF/I47g/LrCxrXtcy3j8xj57PzNR6zfP3aXn0sN8nc2bd2lZq23pe6fl30nPeKeWxlpfSZlgfnyO1hzKt/RfnTx5tes7VWtuD/kzP1WvjI3m0CefV4VwgV08e5+g1/yYPX8jDF/Lwg/HKF/Lwhzx8IQ9fyMOXMI+rC47OzGOn/W8AmRxdkYfkbTjm7nLfl2j9Gf/vq1ZPHmU8XT95+Lp+8qj/3jc3ruX2z0LheV5m78dR2ZaO1+qZ87bL3Se543Nt4xrWMRD/jzx8IQ9fyMMX8vCFPHwhD1/Iwxfy8IU8ztH6G1WP37OwuaqvyMTmyj4ij7yWsap2fINu7aNl+Ntni7K01C2JbfLIs+ZhrZPaCdeRlrofanLRtsnDpiSPkjqtHmml/Vz6/GC8KsP8CgAAAAAAAAAAAAAAAAAAAAAAAPgOH3KpyaKgjAAA
+        </data>
+    </layer>
+    <layer name="monsters" width="100" height="90">
+        <data encoding="base64" compression="gzip">
+            H4sIAAAAAAAAC+3ZsQ4AEAwFwG78/xdbbU1DSLgb31CLN9AIAGa9mMOrsjuvEwAA3NKK+eoZO+fCj+b3Y9YnfTvPXxgAAAAAAEDOTgUAAAAAAAAAAAAAAAAAAAAAAAAAAACAGwYyoxiloIwAAA==
+        </data>
+    </layer>
 </map>

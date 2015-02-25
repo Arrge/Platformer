@@ -1,10 +1,10 @@
-
 package platformer.Entities;
 
 import org.newdawn.slick.geom.Rectangle;
 
 /**
  * interface for collidable entities
+ *
  * @author Joonas
  */
 public interface Collidable {

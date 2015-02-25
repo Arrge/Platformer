@@ -6,8 +6,10 @@
 package platformer.Entities;
 
 import org.newdawn.slick.geom.Rectangle;
+
 /**
  * basic platform/entity
+ *
  * @author Joonas
  */
 public class Entity implements Collidable {
@@ -17,13 +19,15 @@ public class Entity implements Collidable {
     private float x_old, y_old;
     private int spriteSheetId;
     private int collisionDamage;
+
     /**
      * entity without collision damage
+     *
      * @param x
      * @param y
      * @param spriteSheetId
      * @param width
-     * @param height 
+     * @param height
      */
     public Entity(float x, float y, int spriteSheetId, float width, float height) {
         this.hitbox = new Rectangle(x, y, width, height);
@@ -34,14 +38,16 @@ public class Entity implements Collidable {
         x_vel = 0;
         collisionDamage = 0;
     }
+
     /**
      * entity with collision damage
+     *
      * @param x
      * @param y
      * @param spriteSheetId
      * @param width
      * @param height
-     * @param collisionDamage 
+     * @param collisionDamage
      */
     public Entity(float x, float y, int spriteSheetId, float width, float height, int collisionDamage) {
         this.hitbox = new Rectangle(x, y, width, height);
@@ -52,16 +58,20 @@ public class Entity implements Collidable {
         x_vel = 0;
         this.collisionDamage = collisionDamage;
     }
+
     /**
-     * 
+     * set the location of the entity
+     *
      * @param x
-     * @param y 
+     * @param y
      */
     public void setLocation(float x, float y) {
         getHitbox().setLocation(x, y);
     }
+
     /**
-     * set location to currentlocation + velocity
+     * set location to current location + velocity and save old coordinates
+     *
      * @param delta milliseconds since last tick
      */
     public void move(int delta) {
@@ -111,10 +121,20 @@ public class Entity implements Collidable {
         return y_old;
     }
 
+    /**
+     * get bottom left x coordinate of earlier frame
+     *
+     * @return bottom left x coordinate of earlier frame
+     */
     public float getMaxX_old() {
         return x_old + getWidth();
     }
 
+    /**
+     * get bottom left y coordinate of earlier frame
+     *
+     * @return bottom left y coordinate of earlier frame
+     */
     public float getMaxY_old() {
         return y_old + getHeight();
     }
@@ -139,4 +159,5 @@ public class Entity implements Collidable {
     public int getCollisionDamage() {
         return collisionDamage;
     }
+
 }

@@ -11,6 +11,7 @@ import platformer.Entities.*;
 
 /**
  * Class that contains logic for the game
+ *
  * @author Joonas
  */
 public class Logic {
@@ -24,8 +25,9 @@ public class Logic {
     private Boss boss;
 
     /**
-     * 
-     * @param input get input from GameContainer in GUI
+     * create a new logic class which has access to the slick2d keylistener
+     *
+     * @param input keylistener Input class from GameContainer in GUI
      */
     public Logic(Input input) {
         boss = new Boss(9, 64, 64);
@@ -40,6 +42,7 @@ public class Logic {
 
     /**
      * update the game to next frame
+     *
      * @param delta milliseconds since last tick
      */
     public void update(int delta) {
@@ -55,11 +58,11 @@ public class Logic {
         checkFirespinners();
         checkForBossFight();
     }
-    
+
     /**
      * Check for collisions between the player and a collidable object
      *
-     * @param collidables
+     * @param collidables an arraylist of collidable objects
      */
     public void checkForCollisions(ArrayList<Collidable> collidables) {
         for (Collidable collidable : collidables) {
@@ -70,7 +73,7 @@ public class Logic {
 
     private void checkHorizontalCollisions(Collidable collidable) {
         if (player.getHitbox().intersects(collidable.getHitbox())) {
-            
+
             //if coming from left
             if (player.getMaxX_old() < collidable.getX_old()) {
                 player.setLocation(collidable.getX() - player.getWidth() - 0.1f, player.getY());
@@ -104,6 +107,7 @@ public class Logic {
             }
         }
     }
+
     /**
      * check for firespinnercollisions
      */
@@ -112,22 +116,25 @@ public class Logic {
         for (Firespinner fs : firespinners) {
             collidables = new ArrayList<>();
             collidables.addAll(fs.getFireballs());
-            checkOnlyCollisionDamage(collidables );
+            checkOnlyCollisionDamage(collidables);
         }
     }
+
     /**
      * apply collision damage without fixing collisions
-     * @param collidables 
+     *
+     * @param collidables
      */
     public void checkOnlyCollisionDamage(ArrayList<Collidable> collidables) {
         for (Collidable c : collidables) {
             if (player.getHitbox().intersects(c.getHitbox())) {
                 if (player.takeDamage(c.getCollisionDamage())) {
                     boss.reset();
-                } 
+                }
             }
         }
     }
+
     /**
      * check if player is at the boss fight height
      */
@@ -136,9 +143,7 @@ public class Logic {
             boss.start();
         }
     }
-    
-    
-    
+
     /**
      * checks keys and apply movement to player
      */
@@ -153,12 +158,14 @@ public class Logic {
             player.jump();
         }
         if (input.isKeyDown(Input.KEY_F3)) {
-            player.setLocation(56*32, 10*32);
+            player.setLocation(56 * 32, 10 * 32);
         }
 
-    } 
+    }
+
     /**
-     * 
+     * update all patrolling enemies
+     *
      * @param delta milliseconds since last tick
      */
     public void updatePatrollingEnemies(int delta) {
@@ -166,8 +173,10 @@ public class Logic {
             p.update(delta);
         }
     }
+
     /**
-     * 
+     * update all firespinners
+     *
      * @param delta milliseconds since last tick
      */
     public void updateFirespinners(int delta) {
@@ -175,14 +184,16 @@ public class Logic {
             fp.update(delta);
         }
     }
+
     /**
-     * apply gravity to objects
+     * apply gravity to player and other objects
+     *
      * @param delta milliseconds since last tick
      */
     public void applyGravity(int delta) {
         player.applyGravityAndVelocity(delta);
     }
-    
+
     ///////////////////
     //get & set & add//
     ///////////////////
@@ -197,13 +208,19 @@ public class Logic {
     public ArrayList<Firespinner> getFirespinners() {
         return firespinners;
     }
-    
+
+    /**
+     * add patrolling enemies to the PatrollingEnemies arraylist aswell as the
+     * damagingCollidables arraylist
+     *
+     * @param list list of patrolling enemies
+     */
     public void addPatrollingEnemiesArrayList(ArrayList<PatrollingEnemy> list) {
         PatrollingEnemies.addAll(list);
         damagingCollidables.addAll(list);
 
     }
-    
+
     public void addFirespinnerArrayList(ArrayList<Firespinner> list) {
         firespinners.addAll(list);
     }
@@ -211,7 +228,7 @@ public class Logic {
     public void addDamagingCollidablesArrayList(ArrayList<Collidable> list) {
         damagingCollidables.addAll(list);
     }
-    
+
     public void addDamagingCollidable(Collidable collidable) {
         damagingCollidables.add(collidable);
     }
@@ -231,4 +248,9 @@ public class Logic {
     public Boss getBoss() {
         return boss;
     }
+
+    public ArrayList<Collidable> getDamagingCollidables() {
+        return damagingCollidables;
+    }
+
 }

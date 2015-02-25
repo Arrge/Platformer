@@ -26,54 +26,87 @@ public class Game extends BasicGame {
      * Screen height
      */
     private static final int HEIGHT = 600;
-    private Logic w;
+    private Logic logic;
     private SpriteHandler sh;
     private Image image;
     private int frame;
-    
+
     public Game() {
         super("Platformer");
     }
-    
+
+    /**
+     * draw all non moving entities
+     */
     private void drawStationaryMapEntities() {
-        sh.getMap().render(0 - (int) w.getPlayer().getX_offset(), 0 - (int) w.getPlayer().getY_offset(),0);
+        sh.getMap().render(0 - (int) logic.getPlayer().getX_offset(), 0 - (int) logic.getPlayer().getY_offset(), 0);
     }
-    
+
+    /**
+     * draw patrolling enemies
+     *
+     * @param g graphics object
+     * @throws SlickException
+     */
     private void drawPatrollingEnemies(Graphics g) throws SlickException {
-        for (PatrollingEnemy p : w.getPatrollingEnemies()) {
-            g.drawImage(sh.getSprite(p.getSpriteSheetId()), p.getX() - w.getPlayer().getX_offset(), p.getY() - w.getPlayer().getY_offset());
-            
+        for (PatrollingEnemy p : logic.getPatrollingEnemies()) {
+            g.drawImage(sh.getSprite(p.getSpriteSheetId()), p.getX() - logic.getPlayer().getX_offset(), p.getY() - logic.getPlayer().getY_offset());
+
         }
     }
-    
+
+    /**
+     * set rotation and draw all firespinners
+     *
+     * @param g graphics object
+     * @throws SlickException
+     */
     private void drawFirespinners(Graphics g) throws SlickException {
-         for (Firespinner fs : w.getFirespinners()) {
+        for (Firespinner fs : logic.getFirespinners()) {
             for (Spike s : fs.getFireballs()) {
                 image = sh.getSprite(s.getSpriteSheetId());
-                image.setCenterOfRotation(image.getWidth()/2, image.getHeight()/2);
-                image.setRotation(frame*2);
-                g.drawImage(image, s.getX() - w.getPlayer().getX_offset(), s.getY() - w.getPlayer().getY_offset());
+                image.setCenterOfRotation(image.getWidth() / 2, image.getHeight() / 2);
+                image.setRotation(frame * 2);
+                g.drawImage(image, s.getX() - logic.getPlayer().getX_offset(), s.getY() - logic.getPlayer().getY_offset());
             }
         }
     }
-    
+
+    /**
+     * set rotation and draw boss
+     *
+     * @throws SlickException
+     */
     private void drawBoss() throws SlickException {
-        image = sh.getSprite(w.getBoss().getSpriteSheetId());
-        image.setCenterOfRotation(image.getWidth()*w.getBoss().getScale()/2, image.getHeight()*w.getBoss().getScale()/2);
-        image.setRotation((float)frame*(float)w.getBoss().getX_vel()/20f);
-        
-        image.draw(w.getBoss().getX() - w.getPlayer().getX_offset(), w.getBoss().getY() - w.getPlayer().getY_offset(),w.getBoss().getScale());
-    }
-    
-    private void drawPlayer(Graphics g) {
-        g.setColor(new Color(w.getPlayer().getOpacity(), 128, 128, 255));
-        //g.drawImage(sprite, w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset());
-        g.fillRect(w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset(), w.getPlayer().getWidth(), w.getPlayer().getHeight());
-        //player coords for debug
-        g.setColor(Color.red);
-        g.drawString("health: "+ w.getPlayer().getHealth(), 40, 40);
+        image = sh.getSprite(logic.getBoss().getSpriteSheetId());
+        image.setCenterOfRotation(image.getWidth() * logic.getBoss().getScale() / 2, image.getHeight() * logic.getBoss().getScale() / 2);
+        image.setRotation((float) frame * (float) logic.getBoss().getX_vel() / 20f);
+
+        image.draw(logic.getBoss().getX() - logic.getPlayer().getX_offset(), logic.getBoss().getY() - logic.getPlayer().getY_offset(), logic.getBoss().getScale());
     }
 
+    /**
+     * set the opacity (to indicate if player is on immunity timer) and draw the
+     * player and health
+     *
+     * @param g
+     */
+    private void drawPlayer(Graphics g) {
+        g.setColor(new Color(logic.getPlayer().getOpacity(), 128, 128, 255));
+        //g.drawImage(sprite, w.getPlayer().getX() - w.getPlayer().getX_offset(), w.getPlayer().getY() - w.getPlayer().getY_offset());
+        g.fillRect(logic.getPlayer().getX() - logic.getPlayer().getX_offset(), logic.getPlayer().getY() - logic.getPlayer().getY_offset(), logic.getPlayer().getWidth(), logic.getPlayer().getHeight());
+        //player coords for debug
+        g.setColor(Color.red);
+        g.drawString("health: " + logic.getPlayer().getHealth(), 40, 40);
+    }
+
+    /**
+     * increase frame number and call all drawing methods
+     *
+     * @param container
+     * @param g
+     * @throws SlickException
+     */
     public void render(GameContainer container, Graphics g) throws SlickException {
         frame++;
         //render stationary objects
@@ -91,19 +124,19 @@ public class Game extends BasicGame {
 
     @Override
     public void init(GameContainer container) throws SlickException {
-        w = new Logic(container.getInput());
+        logic = new Logic(container.getInput());
         sh = new SpriteHandler();
-        w.addPlatformArrayList(sh.getMapPlatforms());
-        w.addDamagingCollidablesArrayList(sh.getSpikes());
-        w.addPatrollingEnemiesArrayList(sh.getPatrollingEnemies());
-        w.addFirespinnerArrayList(sh.getFirespinners());
+        logic.addPlatformArrayList(sh.getMapPlatforms());
+        logic.addDamagingCollidablesArrayList(sh.getSpikes());
+        logic.addPatrollingEnemiesArrayList(sh.getPatrollingEnemies());
+        logic.addFirespinnerArrayList(sh.getFirespinners());
         frame = 0;
 
     }
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
-        w.update(delta);
+        logic.update(delta);
     }
 
     public static void main(String[] args) throws SlickException {
