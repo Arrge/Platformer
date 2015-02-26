@@ -1,4 +1,4 @@
-package platformer.Entities;
+package platformer.entities;
 
 import org.newdawn.slick.geom.Rectangle;
 

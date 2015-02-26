@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package platformer.Sprites;
+package platformer.sprites;
 
 import java.util.ArrayList;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
-import platformer.Entities.Collidable;
-import platformer.Entities.Entity;
-import platformer.Entities.Firespinner;
-import platformer.Entities.PatrollingEnemy;
-import platformer.Entities.Spike;
+import platformer.entities.Collidable;
+import platformer.entities.Entity;
+import platformer.entities.Firespinner;
+import platformer.entities.PatrollingEnemy;
+import platformer.entities.Spike;
 
 /**
  * Handles spritesheets and TILED maps (.tmx files)
@@ -33,8 +33,9 @@ public class SpriteHandler {
      * @throws SlickException
      */
     public SpriteHandler() throws SlickException {
+        ClassLoader classLoader = getClass().getClassLoader();
         Image img = new Image("src/resources/tileset.png");
-        map = new TiledMap("src/resources/test1.tmx");
+        map = new TiledMap(("src/resources/test1.tmx"));
         sprites = new SpriteSheet(img, 32, 32);
         maptiles = new ArrayList<>();
 

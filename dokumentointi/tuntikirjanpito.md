@@ -23,5 +23,6 @@
 | 14.02.2015 | level designiä ja liikkumisen hiomista | 1h |
 | 16.02.2015 | bossi implementoitu ja bugeja korjattu | 3h |
 | 17.02.2015 | sekvenssikaavioita,javadocien täydennystä, deadlineen valmistautumista | 1.5h |
-
-Logiikkaluokka repii testikattavuutta alaspäin, koska suurta osaa metodeista ei voi testata mielekkäästi, kuten esimerkiksi Input luokkaa kuunteleva metodi ja 13 get/set/add metodia
+| 19.02.2015 | javadoceja junit testejä deadlineen valmistautumista | 2h |
+| 25.02.2015 | junit testejä, checkstylen korjailua, sekvenssikaavioiden korjausta, jar tiedoston kanssa taistelua | 4.5h |
+| 26.02.2015 | loppuviimeistelyt | 2.5h |

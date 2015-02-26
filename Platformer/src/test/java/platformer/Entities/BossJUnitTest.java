@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package platformer.Entities;
+package platformer.entities;
 
+import platformer.entities.Player;
+import platformer.entities.Boss;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import platformer.Logic.Logic;
+import platformer.logic.Logic;
 
 /**
  *

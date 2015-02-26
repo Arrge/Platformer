@@ -1,4 +1,4 @@
-package platformer.GUI;
+package platformer.gui;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -7,11 +7,11 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import platformer.Entities.Firespinner;
-import platformer.Entities.PatrollingEnemy;
-import platformer.Entities.Spike;
-import platformer.Logic.Logic;
-import platformer.Sprites.SpriteHandler;
+import platformer.entities.Firespinner;
+import platformer.entities.PatrollingEnemy;
+import platformer.entities.Spike;
+import platformer.logic.Logic;
+import platformer.sprites.SpriteHandler;
 
 /**
  * A game made using Slick2d

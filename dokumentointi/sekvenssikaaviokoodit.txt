@@ -1,8 +1,8 @@
-title Logic loop
-
-
+Title player jumps + 1 frame
+player -> Game: *presses the spacebar*
 Game -> Logic:update()
 Logic -> Logic: checkInput()
+Logic -> Player: jump()
 Logic -> Logic: applygravity(delta)
 Logic -> Player: move(delta)
 Logic -> Logic: updateFirespinners(delta)
@@ -31,13 +31,30 @@ SpriteHandler --> Logic: getSpikes(mapID)
 Game -> Logic:addPlatformArrayList
 SpriteHandler --> Logic: getMapPlatforms(mapID)
 --------------------------------------------------------------
-title GUI draw loop (Game class)
-Game -> Game: drawStationaryMapEntities()
-Game -> Game: drawBoss()
-Game -> Game: drawPatrollingEnemies(Graphics g)
-Game -> Game: drawFirespinners(Graphics g)
-Game -> Game: drawPlayer(g);
+Title player triggers boss and on the next frame gets hit
+player -> Game: *descends the player entity to boss room height*
+Game -> Logic:update()
+Logic -> Logic: checkInput()
+Logic -> Logic: applygravity(delta)
+Logic -> Player: move(delta)
+Logic -> Logic: updateFirespinners(delta)
+Logic -> Logic: updatePatrollingEnemies(delta)
+Logic -> Logic: checkForCollisions(damagingCollidables)
+Logic -> Logic: checkForCollisions(platforms)
+Logic -> Logic: checkFirespinners()
+Logic -> Logic: checkForBossFight()
+Logic -> Boss: start()
+Logic -> Boss: update(delta)
 
+Game -> Logic:update()
+Logic -> Logic: checkInput()
+Logic -> Logic: applygravity(delta)
+Logic -> Player: move(delta)
+Logic -> Logic: updateFirespinners(delta)
+Logic -> Logic: updatePatrollingEnemies(delta)
+Logic -> Logic: checkForCollisions(damagingCollidables)
+Logic -> Player: takeDamage(collidable.getCollisionDamage())
+Logic -> Boss: reset()
 
 
 

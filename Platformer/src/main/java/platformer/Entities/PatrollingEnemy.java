@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package platformer.Entities;
+package platformer.entities;
 
 /**
  * Enemy that moves back and forth inside its patrol radius

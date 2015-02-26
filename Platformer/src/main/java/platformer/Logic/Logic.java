@@ -3,11 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package platformer.Logic;
+package platformer.logic;
 
+import platformer.entities.Collidable;
+import platformer.entities.PatrollingEnemy;
+import platformer.entities.Firespinner;
+import platformer.entities.Boss;
+import platformer.entities.Player;
 import java.util.ArrayList;
 import org.newdawn.slick.Input;
-import platformer.Entities.*;
 
 /**
  * Class that contains logic for the game
@@ -52,11 +56,12 @@ public class Logic {
         player.move(delta);
         updateFirespinners(delta);
         updatePatrollingEnemies(delta);
-        boss.update(delta);
+        
         checkForCollisions(damagingCollidables);
         checkForCollisions(platforms);
         checkFirespinners();
         checkForBossFight();
+        boss.update(delta);
     }
 
     /**
