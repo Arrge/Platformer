@@ -33,7 +33,6 @@ public class SpriteHandler {
      * @throws SlickException
      */
     public SpriteHandler() throws SlickException {
-        ClassLoader classLoader = getClass().getClassLoader();
         Image img = new Image("src/resources/tileset.png");
         map = new TiledMap(("src/resources/test1.tmx"));
         sprites = new SpriteSheet(img, 32, 32);
