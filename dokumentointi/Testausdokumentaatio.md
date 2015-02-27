@@ -25,4 +25,6 @@ muuttuu
 
 **BUGIT:**
 - ainakin netbeanssista käynnistäessä ruudun liikuttaminen johtaa yleensä pelaajan tippumiseen pelialueen ulkopuolelle
-- githubia ei kinosta alkaako packaget isolla vai pienellä kirjaimella, jonka seurauksena github ei huomaa, että olen vaihtanut kansiot alkamaan pienellä kirjaimella (jotta vastaisivat checkstyle sääntöjä)
+- en voi laittaa packageja alkamaan pienellä kirjaimella, koska github ei ota kirjainkokoa huomioon puskiessa ja tuhoaa koko projektipuun
+- peli herjaa linuxilla javaws.jar tiedoston puuttumista jdk:sta, joten oli pakko lisätä se suoraan projektikansioon vaikka maveni siitä valittaakin
+- executable jar ei vain toimi linuxilla vaikka mitä tekisi, joten linuxilla täytyy ladata .tar muotoinen release ja unpackata se ja käynnistää game.sh tiedostosta

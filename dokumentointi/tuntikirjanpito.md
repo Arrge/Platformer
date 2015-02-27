@@ -26,3 +26,4 @@
 | 19.02.2015 | javadoceja junit testejä deadlineen valmistautumista | 2h |
 | 25.02.2015 | junit testejä, checkstylen korjailua, sekvenssikaavioiden korjausta, jar tiedoston kanssa taistelua | 4.5h |
 | 26.02.2015 | loppuviimeistelyt | 2.5h |
+| 27.02.2015 | linux yhteensopivuusongelmien fixailua | 5h |
