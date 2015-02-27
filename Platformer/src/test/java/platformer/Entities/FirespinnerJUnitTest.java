@@ -5,7 +5,7 @@
  */
 package platformer.entities;
 
-import platformer.entities.Firespinner;
+import platformer.Entities.Firespinner;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

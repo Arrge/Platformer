@@ -5,6 +5,7 @@ package platformer.logic;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import platformer.Logic.Logic;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -12,11 +13,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import platformer.entities.Collidable;
-import platformer.entities.Entity;
-import platformer.entities.Firespinner;
-import platformer.entities.Player;
-import platformer.entities.Spike;
+import platformer.Entities.Collidable;
+import platformer.Entities.Entity;
+import platformer.Entities.Firespinner;
+import platformer.Entities.Player;
+import platformer.Entities.Spike;
 
 /**
  *

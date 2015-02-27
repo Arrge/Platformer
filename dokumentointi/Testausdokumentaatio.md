@@ -25,3 +25,4 @@ muuttuu
 
 **BUGIT:**
 - ainakin netbeanssista käynnistäessä ruudun liikuttaminen johtaa yleensä pelaajan tippumiseen pelialueen ulkopuolelle
+- githubia ei kinosta alkaako packaget isolla vai pienellä kirjaimella, jonka seurauksena github ei huomaa, että olen vaihtanut kansiot alkamaan pienellä kirjaimella (jotta vastaisivat checkstyle sääntöjä)

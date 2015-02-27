@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <main.class>platformer.gui.Game</main.class>
+        <main.class>platformer.GUI.Game</main.class>
         <java.library.path>${basedir}/target/natives</java.library.path>
     </properties>
 
@@ -48,7 +48,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>platformer.gui.Game</mainClass>
+                                    <mainClass>platformer.GUI.Game</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -138,15 +138,15 @@
                 <version>1.1.4</version>
                 <configuration>
                     <targetClasses>
-                        <param>platformer.entities.Entity</param>
-                        <param>platformer.entities.Player</param>
-                        <param>platformer.entities.PatrollingEnemy</param>
-                        <param>platformer.entities.Firespinner</param>
-                        <param>platformer.entities.Boss</param>
-                        <param>platformer.logic.*</param>
+                        <param>platformer.Entities.Entity</param>
+                        <param>platformer.Entities.Player</param>
+                        <param>platformer.Entities.PatrollingEnemy</param>
+                        <param>platformer.Entities.Firespinner</param>
+                        <param>platformer.Entities.Boss</param>
+                        <param>platformer.Logic.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>platformer.entities.*</param>
+                        <param>platformer.Entities.*</param>
                         <param>platformer.logic.*</param>
                     </targetTests>
                 </configuration>

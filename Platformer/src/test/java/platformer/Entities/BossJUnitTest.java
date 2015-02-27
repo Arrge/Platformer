@@ -5,15 +5,15 @@
  */
 package platformer.entities;
 
-import platformer.entities.Player;
-import platformer.entities.Boss;
+import platformer.Entities.Player;
+import platformer.Entities.Boss;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import platformer.logic.Logic;
+import platformer.Logic.Logic;
 
 /**
  *

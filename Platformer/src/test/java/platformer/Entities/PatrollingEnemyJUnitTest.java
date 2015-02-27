@@ -5,8 +5,8 @@
  */
 package platformer.entities;
 
-import platformer.entities.Entity;
-import platformer.entities.PatrollingEnemy;
+import platformer.Entities.Entity;
+import platformer.Entities.PatrollingEnemy;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
