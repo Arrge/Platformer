@@ -19,7 +19,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>platformer.gui.Game</mainClass>
+                  <mainClass>platformer.GUI.Game</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -105,15 +105,15 @@
         <version>1.1.4</version>
         <configuration>
           <targetClasses>
-            <param>platformer.entities.Entity</param>
-            <param>platformer.entities.Player</param>
-            <param>platformer.entities.PatrollingEnemy</param>
-            <param>platformer.entities.Firespinner</param>
-            <param>platformer.entities.Boss</param>
-            <param>platformer.logic.*</param>
+            <param>platformer.Entities.Entity</param>
+            <param>platformer.Entities.Player</param>
+            <param>platformer.Entities.PatrollingEnemy</param>
+            <param>platformer.Entities.Firespinner</param>
+            <param>platformer.Entities.Boss</param>
+            <param>platformer.Logic.*</param>
           </targetClasses>
           <targetTests>
-            <param>platformer.entities.*</param>
+            <param>platformer.Entities.*</param>
             <param>platformer.logic.*</param>
           </targetTests>
         </configuration>
@@ -121,6 +121,13 @@
     </plugins>
   </build>
   <dependencies>
+    <dependency>
+      <groupId>javax.jnlp</groupId>
+      <artifactId>jnlp-api</artifactId>
+      <version>7.0</version>
+      <scope>system</scope>
+      <systemPath>C:\Program Files\Java\jdk1.8.0_25\jre/lib/javaws.jar</systemPath>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -136,7 +143,7 @@
   </dependencies>
   <properties>
     <java.library.path>${basedir}/target/natives</java.library.path>
-    <main.class>platformer.gui.Game</main.class>
+    <main.class>platformer.GUI.Game</main.class>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>
