@@ -28,3 +28,4 @@ muuttuu
 - en voi laittaa packageja alkamaan pienell‰ kirjaimella, koska github ei ota kirjainkokoa huomioon puskiessa ja tuhoaa koko projektipuun
 - peli herjaa linuxilla javaws.jar tiedoston puuttumista jdk:sta, joten oli pakko lis‰t‰ se suoraan projektikansioon vaikka maveni siit‰ valittaakin
 - executable jar ei vain toimi linuxilla vaikka mit‰ tekisi, joten linuxilla t‰ytyy ladata .tar muotoinen release ja unpackata se ja k‰ynnist‰‰ game.sh tiedostosta
+- shaded ei osaa pakata slick2d kirjastoja oikein
