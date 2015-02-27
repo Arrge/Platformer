@@ -124,9 +124,9 @@
     <dependency>
       <groupId>javax.jnlp</groupId>
       <artifactId>jnlp-api</artifactId>
-      <version>7.0</version>
+      <version>8.0</version>
       <scope>system</scope>
-      <systemPath>C:\Program Files\Java\jdk1.8.0_25\jre/lib/javaws.jar</systemPath>
+      <systemPath>C:\Users\Joonas\github\Platformer\Platformer/javaws.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

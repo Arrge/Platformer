@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2015</copyright>
     <item>
       <title>File: 10,
-             Errors: 27,
+             Errors: 37,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,35 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#platformer.entities.Firespinner.java">platformer/entities/Firespinner.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#platformer.entities.Spike.java">platformer/entities/Spike.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#platformer.entities.Player.java">platformer/entities/Player.java</a>
+                  <a href="${project.url}/checkstyle.html#platformer.Entities.Boss.java">platformer/Entities/Boss.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +60,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#platformer.entities.Boss.java">platformer/entities/Boss.java</a>
+                  <a href="${project.url}/checkstyle.html#platformer.Logic.Logic.java">platformer/Logic/Logic.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#platformer.Entities.Entity.java">platformer/Entities/Entity.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#platformer.Entities.Spike.java">platformer/Entities/Spike.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#platformer.gui.Game.java">platformer/gui/Game.java</a>
+                  <a href="${project.url}/checkstyle.html#platformer.Entities.Collidable.java">platformer/Entities/Collidable.java</a>
                 </td>
                 <td>
                   0
@@ -111,12 +111,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  7
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#platformer.entities.Collidable.java">platformer/entities/Collidable.java</a>
+                  <a href="${project.url}/checkstyle.html#platformer.Entities.Player.java">platformer/Entities/Player.java</a>
                 </td>
                 <td>
                   0
@@ -125,12 +125,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  3
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#platformer.entities.PatrollingEnemy.java">platformer/entities/PatrollingEnemy.java</a>
+                  <a href="${project.url}/checkstyle.html#platformer.GUI.Game.java">platformer/GUI/Game.java</a>
                 </td>
                 <td>
                   0
@@ -139,12 +139,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#platformer.sprites.SpriteHandler.java">platformer/sprites/SpriteHandler.java</a>
+                  <a href="${project.url}/checkstyle.html#platformer.Entities.PatrollingEnemy.java">platformer/Entities/PatrollingEnemy.java</a>
                 </td>
                 <td>
                   0
@@ -153,12 +153,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#platformer.entities.Entity.java">platformer/entities/Entity.java</a>
+                  <a href="${project.url}/checkstyle.html#platformer.Sprites.SpriteHandler.java">platformer/Sprites/SpriteHandler.java</a>
                 </td>
                 <td>
                   0
@@ -167,12 +167,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  14
+                  1
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#platformer.logic.Logic.java">platformer/logic/Logic.java</a>
+                  <a href="${project.url}/checkstyle.html#platformer.Entities.Firespinner.java">platformer/Entities/Firespinner.java</a>
                 </td>
                 <td>
                   0
@@ -181,7 +181,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  4
+                  1
                 </td>
               </tr>
                       </tbody>

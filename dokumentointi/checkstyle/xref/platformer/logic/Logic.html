@@ -5,19 +5,19 @@
 <link type="text/css" rel="stylesheet" href="../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../apidocs/platformer/logic/Logic.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../apidocs/platformer/Logic/Logic.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * To change this license header, choose License Headers in Project Properties.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * To change this template file, choose Tools | Templates</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * and open the template in the editor.</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> */</em>
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">package</strong> platformer.logic;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">package</strong> platformer.Logic;
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> platformer.entities.Collidable;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> platformer.entities.PatrollingEnemy;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> platformer.entities.Firespinner;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> platformer.entities.Boss;
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> platformer.entities.Player;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> platformer.Entities.Collidable;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> platformer.Entities.PatrollingEnemy;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> platformer.Entities.Firespinner;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> platformer.Entities.Boss;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> platformer.Entities.Player;
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> org.newdawn.slick.Input;
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  
@@ -26,24 +26,24 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * @author Joonas</em>
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../platformer/logic/Logic.html">Logic</a> {
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../platformer/Logic/Logic.html">Logic</a> {
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>      <strong class="jxr_keyword">private</strong> ArrayList&lt;Collidable&gt; platforms;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>      <strong class="jxr_keyword">private</strong> ArrayList&lt;Collidable&gt; damagingCollidables;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>      <strong class="jxr_keyword">private</strong> ArrayList&lt;PatrollingEnemy&gt; PatrollingEnemies;
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>      <strong class="jxr_keyword">private</strong> ArrayList&lt;Firespinner&gt; firespinners;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>      <strong class="jxr_keyword">private</strong> Input input;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">private</strong> <a href="../../platformer/entities/Player.html">Player</a> player;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <strong class="jxr_keyword">private</strong> <a href="../../platformer/entities/Boss.html">Boss</a> boss;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">private</strong> <a href="../../platformer/Entities/Player.html">Player</a> player;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <strong class="jxr_keyword">private</strong> <a href="../../platformer/Entities/Boss.html">Boss</a> boss;
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">     * create a new logic class which has access to the slick2d keylistener</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">     *</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">     * @param input keylistener Input class from GameContainer in GUI</em>
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">public</strong> <a href="../../platformer/logic/Logic.html">Logic</a>(Input input) {
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>          boss = <strong class="jxr_keyword">new</strong> <a href="../../platformer/entities/Boss.html">Boss</a>(9, 64, 64);
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>          <strong class="jxr_keyword">this</strong>.player = <strong class="jxr_keyword">new</strong> <a href="../../platformer/entities/Player.html">Player</a>(50, 100, 1, 12, 26);
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">public</strong> <a href="../../platformer/Logic/Logic.html">Logic</a>(Input input) {
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>          boss = <strong class="jxr_keyword">new</strong> <a href="../../platformer/Entities/Boss.html">Boss</a>(9, 64, 64);
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>          <strong class="jxr_keyword">this</strong>.player = <strong class="jxr_keyword">new</strong> <a href="../../platformer/Entities/Player.html">Player</a>(50, 100, 1, 12, 26);
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>          <strong class="jxr_keyword">this</strong>.input = input;
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>          <strong class="jxr_keyword">this</strong>.platforms = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>          <strong class="jxr_keyword">this</strong>.damagingCollidables = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
@@ -84,7 +84,7 @@
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>          }
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>      }
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkHorizontalCollisions(<a href="../../platformer/entities/Collidable.html">Collidable</a> collidable) {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkHorizontalCollisions(<a href="../../platformer/Entities/Collidable.html">Collidable</a> collidable) {
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">if</strong> (player.getHitbox().intersects(collidable.getHitbox())) {
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>              <em class="jxr_comment">//if coming from left</em>
@@ -104,7 +104,7 @@
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>          }
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>      }
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkVerticalCollisions(<a href="../../platformer/entities/Collidable.html">Collidable</a> collidable) {
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkVerticalCollisions(<a href="../../platformer/Entities/Collidable.html">Collidable</a> collidable) {
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">if</strong> (player.getHitbox().intersects(collidable.getHitbox())) {
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>             <em class="jxr_comment">//if coming from above</em>
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>             <strong class="jxr_keyword">if</strong> (player.getMaxY_old() &lt; collidable.getY_old()) {
@@ -242,7 +242,7 @@
 <a class="jxr_linenumber" name="L234" href="#L234">234</a>         damagingCollidables.addAll(list);
 <a class="jxr_linenumber" name="L235" href="#L235">235</a>     }
 <a class="jxr_linenumber" name="L236" href="#L236">236</a> 
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addDamagingCollidable(<a href="../../platformer/entities/Collidable.html">Collidable</a> collidable) {
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addDamagingCollidable(<a href="../../platformer/Entities/Collidable.html">Collidable</a> collidable) {
 <a class="jxr_linenumber" name="L238" href="#L238">238</a>         damagingCollidables.add(collidable);
 <a class="jxr_linenumber" name="L239" href="#L239">239</a>     }
 <a class="jxr_linenumber" name="L240" href="#L240">240</a> 
@@ -250,15 +250,15 @@
 <a class="jxr_linenumber" name="L242" href="#L242">242</a>         platforms.addAll(list);
 <a class="jxr_linenumber" name="L243" href="#L243">243</a>     }
 <a class="jxr_linenumber" name="L244" href="#L244">244</a> 
-<a class="jxr_linenumber" name="L245" href="#L245">245</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addPlatform(<a href="../../platformer/entities/Collidable.html">Collidable</a> e) {
+<a class="jxr_linenumber" name="L245" href="#L245">245</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addPlatform(<a href="../../platformer/Entities/Collidable.html">Collidable</a> e) {
 <a class="jxr_linenumber" name="L246" href="#L246">246</a>         platforms.add(e);
 <a class="jxr_linenumber" name="L247" href="#L247">247</a>     }
 <a class="jxr_linenumber" name="L248" href="#L248">248</a> 
-<a class="jxr_linenumber" name="L249" href="#L249">249</a>     <strong class="jxr_keyword">public</strong> <a href="../../platformer/entities/Player.html">Player</a> getPlayer() {
+<a class="jxr_linenumber" name="L249" href="#L249">249</a>     <strong class="jxr_keyword">public</strong> <a href="../../platformer/Entities/Player.html">Player</a> getPlayer() {
 <a class="jxr_linenumber" name="L250" href="#L250">250</a>         <strong class="jxr_keyword">return</strong> player;
 <a class="jxr_linenumber" name="L251" href="#L251">251</a>     }
 <a class="jxr_linenumber" name="L252" href="#L252">252</a> 
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>     <strong class="jxr_keyword">public</strong> <a href="../../platformer/entities/Boss.html">Boss</a> getBoss() {
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>     <strong class="jxr_keyword">public</strong> <a href="../../platformer/Entities/Boss.html">Boss</a> getBoss() {
 <a class="jxr_linenumber" name="L254" href="#L254">254</a>         <strong class="jxr_keyword">return</strong> boss;
 <a class="jxr_linenumber" name="L255" href="#L255">255</a>     }
 <a class="jxr_linenumber" name="L256" href="#L256">256</a> 

@@ -5,8 +5,8 @@
 <link type="text/css" rel="stylesheet" href="../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../apidocs/platformer/gui/Game.html">View Javadoc</a></div><pre>
-<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> platformer.gui;
+<div id="overview"><a href="../../../apidocs/platformer/GUI/Game.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> platformer.GUI;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> org.newdawn.slick.AppGameContainer;
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> org.newdawn.slick.BasicGame;
@@ -15,16 +15,16 @@
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.newdawn.slick.Graphics;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.newdawn.slick.Image;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.newdawn.slick.SlickException;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> platformer.entities.Firespinner;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> platformer.entities.PatrollingEnemy;
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> platformer.entities.Spike;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> platformer.logic.Logic;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> platformer.sprites.SpriteHandler;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> platformer.Entities.Firespinner;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> platformer.Entities.PatrollingEnemy;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> platformer.Entities.Spike;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> platformer.Logic.Logic;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> platformer.Sprites.SpriteHandler;
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> * A game made using Slick2d</em>
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../platformer/gui/Game.html">Game</a> <strong class="jxr_keyword">extends</strong> BasicGame {
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../platformer/GUI/Game.html">Game</a> <strong class="jxr_keyword">extends</strong> BasicGame {
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">     * Screen width</em>
@@ -34,12 +34,12 @@
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">     * Screen height</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> HEIGHT = 600;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <strong class="jxr_keyword">private</strong> <a href="../../platformer/logic/Logic.html">Logic</a> logic;
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>      <strong class="jxr_keyword">private</strong> <a href="../../platformer/sprites/SpriteHandler.html">SpriteHandler</a> sh;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <strong class="jxr_keyword">private</strong> <a href="../../platformer/Logic/Logic.html">Logic</a> logic;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>      <strong class="jxr_keyword">private</strong> <a href="../../platformer/Sprites/SpriteHandler.html">SpriteHandler</a> sh;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>      <strong class="jxr_keyword">private</strong> Image image;
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> frame;
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">public</strong> <a href="../../platformer/gui/Game.html">Game</a>() {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">public</strong> <a href="../../platformer/GUI/Game.html">Game</a>() {
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>          <strong class="jxr_keyword">super</strong>(<span class="jxr_string">"Platformer"</span>);
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>      }
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
@@ -132,8 +132,8 @@
 <a class="jxr_linenumber" name="L124" href="#L124">124</a> 
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>     @Override
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> init(GameContainer container) <strong class="jxr_keyword">throws</strong> SlickException {
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>         logic = <strong class="jxr_keyword">new</strong> <a href="../../platformer/logic/Logic.html">Logic</a>(container.getInput());
-<a class="jxr_linenumber" name="L128" href="#L128">128</a>         sh = <strong class="jxr_keyword">new</strong> <a href="../../platformer/sprites/SpriteHandler.html">SpriteHandler</a>();
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>         logic = <strong class="jxr_keyword">new</strong> <a href="../../platformer/Logic/Logic.html">Logic</a>(container.getInput());
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>         sh = <strong class="jxr_keyword">new</strong> <a href="../../platformer/Sprites/SpriteHandler.html">SpriteHandler</a>();
 <a class="jxr_linenumber" name="L129" href="#L129">129</a>         logic.addPlatformArrayList(sh.getMapPlatforms());
 <a class="jxr_linenumber" name="L130" href="#L130">130</a>         logic.addDamagingCollidablesArrayList(sh.getSpikes());
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>         logic.addPatrollingEnemiesArrayList(sh.getPatrollingEnemies());
@@ -148,7 +148,7 @@
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>     }
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> 
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String[] args) <strong class="jxr_keyword">throws</strong> SlickException {
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>         AppGameContainer app = <strong class="jxr_keyword">new</strong> AppGameContainer(<strong class="jxr_keyword">new</strong> <a href="../../platformer/gui/Game.html">Game</a>());
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>         AppGameContainer app = <strong class="jxr_keyword">new</strong> AppGameContainer(<strong class="jxr_keyword">new</strong> <a href="../../platformer/GUI/Game.html">Game</a>());
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>         app.setDisplayMode(WIDTH, HEIGHT, false);
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>         app.setForceExit(false);
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>         app.setTargetFrameRate(60);
